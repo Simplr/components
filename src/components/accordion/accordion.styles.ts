@@ -12,6 +12,7 @@ export const accordionStyles = [baseStyles, css`
     --content-padding: 1rem;
     --content-height: 0px;
     display: flex;
+    position: relative;
     width: 100%;
     color: #000;
     box-sizing: border-box;

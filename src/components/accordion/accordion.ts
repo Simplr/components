@@ -1,6 +1,7 @@
-import { css, html, LitElement, TemplateResult } from 'lit';
+import { html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { accordionStyles } from './accordion.styles';
+import "../../core/loading/loading";
 
 /**
  *   A Accordion element From Simplr Components
@@ -42,6 +43,8 @@ export class SimplrAccordion extends LitElement {
     @state()
     contentHeight: number = 0;
 
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
     @property({ type: Boolean, reflect: true })
     open: boolean = false;
     @property({ type: Boolean, reflect: true })
@@ -93,7 +96,9 @@ export class SimplrAccordion extends LitElement {
         return html`<slot name="label"></slot>
       <div class="container">
         <slot @slotchange=${this.handleSlotChange.bind(this)}></slot>
-      </div>`;
+      </div>
+      ${this.loading ? html`<simplr-loading align="right"></simplr-loading>` : ''}
+  `;
     }
 
     static get styles() {

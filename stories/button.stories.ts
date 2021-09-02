@@ -60,6 +60,14 @@ const Template: Story<ArgTypes> = ({
       ?success=${success}
       >Disabled</simplr-button
     >
+    <simplr-button
+            elevated
+      loading
+      ?primary=${primary}
+      ?secondary=${secondary}
+      ?success=${success}
+      >Loading</simplr-button
+    >
   </div>
 `;
 

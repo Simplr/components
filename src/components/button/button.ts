@@ -1,6 +1,7 @@
 import { LitElement, html, TemplateResult } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { buttonStyles } from './button.styles';
+import '../../core/loading/loading';
 
 @customElement('simplr-button')
 export class SimplrButton extends LitElement {
@@ -8,6 +9,8 @@ export class SimplrButton extends LitElement {
     // Button status
     @property({ reflect: true, type: Boolean })
     disabled: boolean = false;
+    @property({ reflect: true, type: Boolean })
+    loading: boolean = false;
     // Button style
     @property({ reflect: true, type: Boolean })
     outlined: boolean = false;
@@ -31,7 +34,7 @@ export class SimplrButton extends LitElement {
     type: string = 'button';
     @property({ reflect: true })
     label: string = 'button';
-    @query("button")
+    @query('button')
     buttonElem: HTMLButtonElement | undefined;
 
     firstUpdated() {
@@ -39,12 +42,11 @@ export class SimplrButton extends LitElement {
     }
 
     private addEventListeners() {
-        this.buttonElem?.addEventListener('keyup', this.handleKeyboardEvent.bind(this));
         this.buttonElem?.addEventListener(
-            'click',
-            this.onClick.bind(this),
-            true
+            'keyup',
+            this.handleKeyboardEvent.bind(this)
         );
+        this.buttonElem?.addEventListener('click', this.onClick.bind(this), true);
     }
 
     private onClick(e: MouseEvent) {
@@ -59,7 +61,7 @@ export class SimplrButton extends LitElement {
         if (e.key === ' ' || e.key === 'Enter') {
             this.doClick();
             this.active = true;
-            window.requestAnimationFrame(() => this.active = false);
+            window.requestAnimationFrame(() => (this.active = false));
         }
     }
 
@@ -69,7 +71,10 @@ export class SimplrButton extends LitElement {
     }
 
     render(): TemplateResult {
-        return html`<button><slot></slot></button>`;
+        return html`<button>
+      ${this.loading ? html`<simplr-loading></simplr-loading>` : ''}
+      <slot></slot>
+    </button>`;
     }
 
     static get styles() {

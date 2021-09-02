@@ -5,11 +5,13 @@ import { Story } from './story-types.js';
 export default {
     title: 'Accordion',
     component: 'simplr-accordion',
-    argTypes: {},
+    argTypes: {
+        loading: { control: "boolean" }
+    },
 };
 
-const Template: Story<ArgTypes> = ({ }: ArgTypes) => html`
-  <simplr-accordion>
+const Template: Story<ArgTypes> = ({ loading }: ArgTypes) => html`
+  <simplr-accordion ?loading=${loading}>
     <label slot="label">Click me to open </label>
     <span>
       <h2>Let's create something awesome together</h2>
@@ -40,4 +42,6 @@ const Template: Story<ArgTypes> = ({ }: ArgTypes) => html`
 
 export const Regular = Template.bind({});
 
-export interface ArgTypes { }
+export interface ArgTypes {
+    loading: boolean
+}
