@@ -1,0 +1,19 @@
+{
+  "name": "@simplr-wc/components-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "exports": {
+    ".": "./dist/index.js",
+    "./loading": "./dist/loading/loading.js"
+  },
+  "dependencies": {
+    "lit": "*"
+  }
+}

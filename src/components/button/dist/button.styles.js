@@ -1,10 +1,9 @@
 import { css } from 'lit';
 import { baseStyles, hostRippleStyles } from '@simplr-wc/components-core';
-
 export const buttonStyles = [
-  baseStyles,
-  hostRippleStyles,
-  css`
+    baseStyles,
+    hostRippleStyles,
+    css `
     :host {
       --text-color: var(--main-color, #444);
       --ripple-color: var(--main-color);
@@ -101,3 +100,4 @@ export const buttonStyles = [
     }
   `,
 ];
+//# sourceMappingURL=button.styles.js.map
