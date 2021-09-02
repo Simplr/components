@@ -25,7 +25,7 @@ const Template: Story<ArgTypes> = ({
     success,
     slot,
 }: ArgTypes) => html`
-  <div style="display: flex; width: 40rem; justify-content: space-between;">
+  <div style="display: flex; width: 45rem; justify-content: space-between;">
     <simplr-button
       ?primary=${primary}
       ?secondary=${secondary}
