@@ -27,7 +27,8 @@ export const hostRippleStyles = css`
   :host::before {
     ${rippleStylesBefore}
   }
-  :host(:active)::before {
+  :host(:active)::before,
+  :host([active])::before {
     ${rippleStylesActive}
   }
 `;

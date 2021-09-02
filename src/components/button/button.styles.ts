@@ -75,7 +75,8 @@ export const buttonStyles = [baseStyles, hostRippleStyles, css`
         border-radius: 50%;
       }
       :host(:hover)::after,
-      :host(:focus-visible)::after {
+      :host(:focus-visible)::after,
+      :host(:focus-within)::after {
         opacity: 0.3;
       }
       ::slotted(svg) {
@@ -86,5 +87,14 @@ export const buttonStyles = [baseStyles, hostRippleStyles, css`
       }
       :host([rounded]) ::slotted(svg) {
         padding: 0;
+      }
+
+      button {
+          background: transparent;
+          color: inherit;
+          font-size: inherit;
+          outline: none;
+          border: none;
+        line-height: inherit;
       }
     `];

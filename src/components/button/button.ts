@@ -1,9 +1,10 @@
 import { LitElement, html, TemplateResult } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { buttonStyles } from './button.styles';
 
 @customElement('simplr-button')
 export class SimplrButton extends LitElement {
+    @property({ reflect: true, type: Boolean }) active = false;
     // Button status
     @property({ reflect: true, type: Boolean })
     disabled: boolean = false;
@@ -30,42 +31,45 @@ export class SimplrButton extends LitElement {
     type: string = 'button';
     @property({ reflect: true })
     label: string = 'button';
-    @property({})
+    @query("button")
     buttonElem: HTMLButtonElement | undefined;
 
     firstUpdated() {
-        this.tabIndex = 0;
         this.addEventListeners();
     }
 
     private addEventListeners() {
-        this.addEventListener('keyup', this.handleKeyboardEvent.bind(this));
-        this.addEventListener(
+        this.buttonElem?.addEventListener('keyup', this.handleKeyboardEvent.bind(this));
+        this.buttonElem?.addEventListener(
             'click',
-            e => {
-                // Don't bubble the click event from this one. Bubble it from the actual button
-                if (e.target === this) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.doClick();
-                }
-            },
+            this.onClick.bind(this),
             true
         );
+    }
+
+    private onClick(e: MouseEvent) {
+        if (e.target === this) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.doClick();
+        }
     }
 
     private handleKeyboardEvent(e: KeyboardEvent) {
         if (e.key === ' ' || e.key === 'Enter') {
             this.doClick();
+            this.active = true;
+            window.requestAnimationFrame(() => this.active = false);
         }
     }
 
     public doClick() {
         this.buttonElem?.click();
+        this.focus();
     }
 
     render(): TemplateResult {
-        return html`<slot></slot>`;
+        return html`<button><slot></slot></button>`;
     }
 
     static get styles() {
