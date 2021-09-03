@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import '../src/components/button/button.js';
+import '@simplr-wc/button';
 import { Story } from './story-types.js';
 
 export default {

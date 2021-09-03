@@ -1,5 +1,5 @@
-import { html, TemplateResult } from 'lit';
-import '../src/components/accordion/accordion.js';
+import { html } from 'lit';
+import '@simplr-wc/accordion';
 import { Story } from './story-types.js';
 
 export default {

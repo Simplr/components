@@ -80,7 +80,7 @@ export class SimplrLoading extends LitElement {
         padding-left: 0.5rem;
       }
       :host([align='right']) {
-        justify-content: flex-end;
+        justify-conteLoadingnt: flex-end;
       }
       :host([align='right']) .loader {
         padding-right: 0.5rem;
