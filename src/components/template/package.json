@@ -1,0 +1,16 @@
+{
+  "name": "@simplr-wc/template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/template.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "*",
+    "@simplr-wc/components-core": "*"
+  }
+}

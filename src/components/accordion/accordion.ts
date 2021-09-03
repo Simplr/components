@@ -40,72 +40,80 @@ import '@simplr-wc/components-core/loading';
  * */
 @customElement('simplr-accordion')
 export class SimplrAccordion extends LitElement {
-    @state()
-    contentHeight: number = 0;
+  @state()
+  contentHeight: number = 0;
 
-    @property({ type: Boolean, reflect: true })
-    loading: boolean = false;
+  @property({ type: Boolean, reflect: true })
+  loading: boolean = false;
 
-    @property({ type: Boolean, reflect: true })
-    open: boolean = false;
+  @property({ type: Boolean, reflect: true })
+  open: boolean = false;
 
-    @property({ type: Boolean, reflect: true })
-    protected first: boolean = false;
+  @property({ type: Boolean, reflect: true })
+  protected first: boolean = false;
 
-    @property({ type: Boolean, reflect: true })
-    protected last: boolean = false;
+  @property({ type: Boolean, reflect: true })
+  protected last: boolean = false;
 
-    firstUpdated() {
-        window.requestAnimationFrame(() => {
-            this.addListeners();
-            this.setOrder();
-            this.tabIndex = 0;
-        });
+  firstUpdated() {
+    window.requestAnimationFrame(() => {
+      this.addListeners();
+      this.setOrder();
+      this.tabIndex = 0;
+    });
+  }
+
+  public toggle(isOpen?: boolean) {
+    if (isOpen === undefined) {
+      this.open = !this.open;
+    } else {
+      this.open = Boolean(isOpen);
     }
+  }
 
-    private setOrder() {
-        const accordions = this.parentNode?.querySelectorAll('simplr-accordion');
-        accordions?.forEach((acc, i) => {
-            if (acc === this) {
-                if (i === 0) this.first = true;
-                else if (i === accordions.length - 1) this.last = true;
-            }
-        });
-    }
+  private setOrder() {
+    const accordions = this.parentNode?.querySelectorAll('simplr-accordion');
+    accordions?.forEach((acc, i) => {
+      if (acc === this) {
+        if (i === 0) this.first = true;
+        else if (i === accordions.length - 1) this.last = true;
+      }
+    });
+  }
 
-    private addListeners(): void {
-        const labelSlot = this.shadowRoot?.querySelector(
-            'slot[name="label"]'
-        ) as HTMLSlotElement;
-        labelSlot?.addEventListener('click', () => {
-            this.open = !this.open;
-        });
-        this.addEventListener('keyup', (e: KeyboardEvent) => {
-            if (e.key === ' ' || e.key === 'Enter') {
-                this.open = !this.open;
-            }
-        });
-    }
+  private addListeners(): void {
+    const labelSlot = this.shadowRoot?.querySelector(
+      'slot[name="label"]'
+    ) as HTMLSlotElement;
+    labelSlot?.addEventListener('click', () => {
+      this.toggle();
+    });
+    this.addEventListener('keyup', (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        this.toggle();
+      }
+    });
+  }
 
-    private handleSlotChange() {
-        const slot = this.shadowRoot?.querySelector(
-            'slot:not([name="label"])'
-        ) as HTMLSlotElement;
-        this.contentHeight = slot.offsetHeight;
-        this.style.setProperty('--content-height', `${this.contentHeight}px`);
-    }
+  private handleSlotChange() {
+    const slot = this.shadowRoot?.querySelector(
+      'slot:not([name="label"])'
+    ) as HTMLSlotElement;
+    this.contentHeight = slot.offsetHeight;
+    this.style.setProperty('--content-height', `${this.contentHeight}px`);
+  }
 
-    render(): TemplateResult {
-        return html`<slot name="label"></slot>
+  render(): TemplateResult {
+    return html`<slot name="label"></slot>
       <div class="container">
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
       ${this.loading
-                ? html`<simplr-loading align="right"></simplr-loading>`
-                : ''} `;
-    }
+        ? html`<simplr-loading align="right"></simplr-loading>`
+        : ''} `;
+  }
 
-    static get styles() {
-        return accordionStyles;
-    }
+  static get styles() {
+    return accordionStyles;
+  }
 }

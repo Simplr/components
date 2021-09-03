@@ -1,9 +1,10 @@
 {
     "files": [],
     "references": [
-        { "path": "./stories" },
         { "path": "./src/components/accordion" },
         { "path": "./src/components/button" },
+        { "path": "./src/components/notification" },
         { "path": "./src/core" },
+        { "path": "./stories" },
     ]
 }
