@@ -7,6 +7,7 @@
         { "path": "./src/components/accordion" },
         { "path": "./src/components/button" },
         { "path": "./src/components/notification" },
+        { "path": "./src/components/checkbox" },
         { "path": "./src/core" },
         { "path": "./stories" },
     ]
