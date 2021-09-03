@@ -64,3 +64,5 @@ function createStory() {
 createFiles();
 modifyTsConfig();
 createStory();
+
+console.log("Done. Please run 'npm install'");
