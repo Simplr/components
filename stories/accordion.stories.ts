@@ -10,6 +10,10 @@ export default {
     },
 };
 
+export interface ArgTypes {
+    loading: boolean
+}
+
 const Template: Story<ArgTypes> = ({ loading }: ArgTypes) => html`
   <simplr-accordion ?loading=${loading}>
     <label slot="label">Click me to open </label>
@@ -41,7 +45,3 @@ const Template: Story<ArgTypes> = ({ loading }: ArgTypes) => html`
 `;
 
 export const Regular = Template.bind({});
-
-export interface ArgTypes {
-    loading: boolean
-}

@@ -19,11 +19,24 @@ export default {
     },
 };
 
+export interface ArgTypes {
+    disabled: boolean;
+    outlined: boolean;
+    contained: boolean;
+    elevated: boolean;
+    rounded: boolean;
+    primary: boolean;
+    secondary: boolean;
+    success: boolean;
+    type: string;
+    label: string;
+    slot?: TemplateResult;
+}
+
 const Template: Story<ArgTypes> = ({
     primary,
     secondary,
     success,
-    slot,
 }: ArgTypes) => html`
   <div style="display: flex; width: 45rem; justify-content: space-between;">
     <simplr-button
@@ -92,17 +105,3 @@ Success.args = {
     success: true,
     slot: html`Click me!`,
 };
-
-export interface ArgTypes {
-    disabled: boolean;
-    outlined: boolean;
-    contained: boolean;
-    elevated: boolean;
-    rounded: boolean;
-    primary: boolean;
-    secondary: boolean;
-    success: boolean;
-    type: string;
-    label: string;
-    slot?: TemplateResult;
-}

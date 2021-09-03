@@ -52,7 +52,7 @@ function modifyTsConfig() {
 }
 
 function createStory() {
-    const storyPath = "stories/template.stores.ts";
+    const storyPath = "stories/template.stories.ts";
     let fileContent = fs.readFileSync(storyPath, "utf8");
     fileContent = fileContent.replace(/Template/g, newComponentNameUpper);
     fileContent = fileContent.replace(/template/g, newComponentNameLower);

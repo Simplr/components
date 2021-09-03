@@ -1,14 +1,29 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true
+  "compilerOptions": {
+    "experimentalDecorators": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./src/components/checkbox-group"
     },
-    "files": [],
-    "references": [
-        { "path": "./src/components/accordion" },
-        { "path": "./src/components/button" },
-        { "path": "./src/components/notification" },
-        { "path": "./src/components/checkbox" },
-        { "path": "./src/core" },
-        { "path": "./stories" },
-    ]
+    {
+      "path": "./src/components/accordion"
+    },
+    {
+      "path": "./src/components/button"
+    },
+    {
+      "path": "./src/components/notification"
+    },
+    {
+      "path": "./src/components/checkbox"
+    },
+    {
+      "path": "./src/core"
+    },
+    {
+      "path": "./stories"
+    }
+  ]
 }

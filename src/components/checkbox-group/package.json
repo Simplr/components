@@ -1,0 +1,17 @@
+{
+  "name": "@simplr-wc/checkbox-group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/checkbox-group.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "*",
+    "@simplr-wc/components-core": "*",
+    "@simplr-wc/checkbox": "*"
+  }
+}

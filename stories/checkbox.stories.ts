@@ -8,6 +8,12 @@ export default {
     argTypes: {},
 };
 
+
+export interface ArgTypes {
+    checked: boolean;
+    indeterminate: boolean;
+}
+
 const Template: Story<ArgTypes> = ({
     checked,
     indeterminate,
@@ -59,8 +65,3 @@ export const Indeterminate = Template.bind({});
 Indeterminate.args = {
     indeterminate: true,
 };
-
-export interface ArgTypes {
-    checked: boolean;
-    indeterminate: boolean;
-}

@@ -8,11 +8,12 @@ export default {
     argTypes: {},
 };
 
+
+export interface ArgTypes {
+}
+
 const Template: Story<ArgTypes> = ({ }: ArgTypes) => html`
     <simplr-template></simplr-template>
 `;
 
 export const Regular = Template.bind({});
-
-export interface ArgTypes {
-}
