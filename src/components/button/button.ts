@@ -5,7 +5,8 @@ import '@simplr-wc/components-core/loading';
 
 @customElement('simplr-button')
 export class SimplrButton extends LitElement {
-  @property({ reflect: true, type: Boolean }) active = false;
+  @property({ reflect: true, type: Boolean })
+  active = false;
 
   // Button status
   @property({ reflect: true, type: Boolean })
