@@ -40,80 +40,74 @@ import '@simplr-wc/components-core/loading';
  * */
 @customElement('simplr-accordion')
 export class SimplrAccordion extends LitElement {
-  @state()
-  contentHeight: number = 0;
+    @state()
+    contentHeight: number = 0;
 
-  @property({ type: Boolean, reflect: true })
-  loading: boolean = false;
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
 
-  @property({ type: Boolean, reflect: true })
-  open: boolean = false;
+    @property({ type: Boolean, reflect: true })
+    open: boolean = false;
 
-  @property({ type: Boolean, reflect: true })
-  protected first: boolean = false;
+    @property({ type: Boolean, reflect: true })
+    protected first: boolean = false;
 
-  @property({ type: Boolean, reflect: true })
-  protected last: boolean = false;
+    @property({ type: Boolean, reflect: true })
+    protected last: boolean = false;
 
-  firstUpdated() {
-    window.requestAnimationFrame(() => {
-      this.addListeners();
-      this.setOrder();
-      this.tabIndex = 0;
-    });
-  }
-
-  public toggle(isOpen?: boolean) {
-    if (isOpen === undefined) {
-      this.open = !this.open;
-    } else {
-      this.open = Boolean(isOpen);
+    firstUpdated() {
+        window.requestAnimationFrame(() => {
+            this.addListeners();
+            this.setOrder();
+            this.tabIndex = 0;
+        });
     }
-  }
 
-  private setOrder() {
-    const accordions = this.parentNode?.querySelectorAll('simplr-accordion');
-    accordions?.forEach((acc, i) => {
-      if (acc === this) {
-        if (i === 0) this.first = true;
-        else if (i === accordions.length - 1) this.last = true;
-      }
-    });
-  }
+    public toggle(isOpen?: boolean) {
+        if (isOpen === undefined) {
+            this.open = !this.open;
+        } else {
+            this.open = Boolean(isOpen);
+        }
+    }
 
-  private addListeners(): void {
-    const labelSlot = this.shadowRoot?.querySelector(
-      'slot[name="label"]'
-    ) as HTMLSlotElement;
-    labelSlot?.addEventListener('click', () => {
-      this.toggle();
-    });
-    this.addEventListener('keyup', (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Enter') {
-        this.toggle();
-      }
-    });
-  }
+    private setOrder() {
+        const accordions = this.parentNode?.querySelectorAll('simplr-accordion');
+        accordions?.forEach((acc, i) => {
+            if (acc === this) {
+                if (i === 0) this.first = true;
+                else if (i === accordions.length - 1) this.last = true;
+            }
+        });
+    }
 
-  private handleSlotChange() {
-    const slot = this.shadowRoot?.querySelector(
-      'slot:not([name="label"])'
-    ) as HTMLSlotElement;
-    this.contentHeight = slot.offsetHeight;
-    this.style.setProperty('--content-height', `${this.contentHeight}px`);
-  }
+    private addListeners(): void {
+        const labelSlot = this.shadowRoot?.querySelector('slot[name="label"]') as HTMLSlotElement;
+        labelSlot?.addEventListener('click', () => {
+            this.toggle();
+        });
+        this.addEventListener('keyup', (e: KeyboardEvent) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+                this.toggle();
+            }
+        });
+    }
 
-  render(): TemplateResult {
-    return html`<slot name="label"></slot>
-      <div class="container">
-        <slot @slotchange=${this.handleSlotChange}></slot>
-      </div>
-      ${this.loading
-        ? html`<simplr-loading align="right"></simplr-loading>`
-        : ''} `;
-  }
+    private handleSlotChange() {
+        const slot = this.shadowRoot?.querySelector('slot:not([name="label"])') as HTMLSlotElement;
+        this.contentHeight = slot.offsetHeight;
+        this.style.setProperty('--content-height', `${this.contentHeight}px`);
+    }
 
-  static get styles() {
-    return accordionStyles;
-  }
+    render(): TemplateResult {
+        return html`<slot name="label"></slot>
+            <div class="container">
+                <slot @slotchange=${this.handleSlotChange}></slot>
+            </div>
+            ${this.loading ? html`<simplr-loading align="right"></simplr-loading>` : ''} `;
+    }
+
+    static get styles() {
+        return accordionStyles;
+    }
 }

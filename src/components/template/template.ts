@@ -5,11 +5,11 @@ import '@simplr-wc/components-core/loading';
 
 @customElement('simplr-template')
 export class SimplrTemplate extends LitElement {
-  render() {
-    return html``;
-  }
+    render() {
+        return html``;
+    }
 
-  static get styles() {
-    return templateStyles;
-  }
+    static get styles() {
+        return templateStyles;
+    }
 }
