@@ -3,17 +3,15 @@ import { html } from 'lit';
 import { Story } from './story-types.js';
 
 export default {
-    title: 'Template',
-    component: 'simplr-template',
-    argTypes: {},
+  title: 'Template',
+  component: 'simplr-template',
+  argTypes: {},
 };
 
+export interface ArgTypes {}
 
-export interface ArgTypes {
-}
-
-const Template: Story<ArgTypes> = ({ }: ArgTypes) => html`
-    <simplr-template></simplr-template>
+const Template: Story<ArgTypes> = ({}: ArgTypes) => html`
+  <simplr-template></simplr-template>
 `;
 
 export const Regular = Template.bind({});

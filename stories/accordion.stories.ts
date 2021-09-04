@@ -3,15 +3,15 @@ import '@simplr-wc/accordion';
 import { Story } from './story-types.js';
 
 export default {
-    title: 'Accordion',
-    component: 'simplr-accordion',
-    argTypes: {
-        loading: { control: "boolean" }
-    },
+  title: 'Accordion',
+  component: 'simplr-accordion',
+  argTypes: {
+    loading: { control: 'boolean' },
+  },
 };
 
 export interface ArgTypes {
-    loading: boolean
+  loading: boolean;
 }
 
 const Template: Story<ArgTypes> = ({ loading }: ArgTypes) => html`

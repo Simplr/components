@@ -3,40 +3,40 @@ import '@simplr-wc/button';
 import { Story } from './story-types.js';
 
 export default {
-    title: 'Button',
-    component: 'simplr-button',
-    argTypes: {
-        disabled: { control: 'boolean' },
-        outlined: { control: 'boolean' },
-        contained: { control: 'boolean' },
-        elevated: { control: 'boolean' },
-        rounded: { control: 'boolean' },
-        primary: { control: 'boolean' },
-        secondary: { control: 'boolean' },
-        success: { control: 'boolean' },
-        type: { control: 'text' },
-        label: { control: 'text' },
-    },
+  title: 'Button',
+  component: 'simplr-button',
+  argTypes: {
+    disabled: { control: 'boolean' },
+    outlined: { control: 'boolean' },
+    contained: { control: 'boolean' },
+    elevated: { control: 'boolean' },
+    rounded: { control: 'boolean' },
+    primary: { control: 'boolean' },
+    secondary: { control: 'boolean' },
+    success: { control: 'boolean' },
+    type: { control: 'text' },
+    label: { control: 'text' },
+  },
 };
 
 export interface ArgTypes {
-    disabled: boolean;
-    outlined: boolean;
-    contained: boolean;
-    elevated: boolean;
-    rounded: boolean;
-    primary: boolean;
-    secondary: boolean;
-    success: boolean;
-    type: string;
-    label: string;
-    slot?: TemplateResult;
+  disabled: boolean;
+  outlined: boolean;
+  contained: boolean;
+  elevated: boolean;
+  rounded: boolean;
+  primary: boolean;
+  secondary: boolean;
+  success: boolean;
+  type: string;
+  label: string;
+  slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-    primary,
-    secondary,
-    success,
+  primary,
+  secondary,
+  success,
 }: ArgTypes) => html`
   <div style="display: flex; width: 45rem; justify-content: space-between;">
     <simplr-button
@@ -74,7 +74,7 @@ const Template: Story<ArgTypes> = ({
       >Disabled</simplr-button
     >
     <simplr-button
-            elevated
+      elevated
       loading
       ?primary=${primary}
       ?secondary=${secondary}
@@ -86,22 +86,22 @@ const Template: Story<ArgTypes> = ({
 
 export const Regular = Template.bind({});
 Regular.args = {
-    slot: html`Click me!`,
+  slot: html`Click me!`,
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-    primary: true,
-    slot: html`Click me!`,
+  primary: true,
+  slot: html`Click me!`,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-    secondary: true,
-    slot: html`Click me!`,
+  secondary: true,
+  slot: html`Click me!`,
 };
 export const Success = Template.bind({});
 Success.args = {
-    success: true,
-    slot: html`Click me!`,
+  success: true,
+  slot: html`Click me!`,
 };

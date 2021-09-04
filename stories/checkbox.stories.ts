@@ -3,20 +3,19 @@ import '@simplr-wc/checkbox';
 import { Story } from './story-types.js';
 
 export default {
-    title: 'Checkbox',
-    component: 'simplr-checkbox',
-    argTypes: {},
+  title: 'Checkbox',
+  component: 'simplr-checkbox',
+  argTypes: {},
 };
 
-
 export interface ArgTypes {
-    checked: boolean;
-    indeterminate: boolean;
+  checked: boolean;
+  indeterminate: boolean;
 }
 
 const Template: Story<ArgTypes> = ({
-    checked,
-    indeterminate,
+  checked,
+  indeterminate,
 }: ArgTypes) => html`
   <style>
     simplr-checkbox {
@@ -58,10 +57,10 @@ export const Regular = Template.bind({});
 
 export const Checked = Template.bind({});
 Checked.args = {
-    checked: true,
+  checked: true,
 };
 
 export const Indeterminate = Template.bind({});
 Indeterminate.args = {
-    indeterminate: true,
+  indeterminate: true,
 };

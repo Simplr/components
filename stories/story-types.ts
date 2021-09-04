@@ -1,9 +1,7 @@
-import { TemplateResult } from "lit";
-
+import { TemplateResult } from 'lit';
 
 export interface Story<T> {
-    (args: T): TemplateResult;
-    args?: Partial<T>;
-    argTypes?: Record<string, unknown>;
+  (args: T): TemplateResult;
+  args?: Partial<T>;
+  argTypes?: Record<string, unknown>;
 }
-
