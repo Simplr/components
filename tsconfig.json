@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/card"
+    },
+    {
       "path": "./src/components/checkbox-group"
     },
     {
