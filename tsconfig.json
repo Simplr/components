@@ -29,10 +29,10 @@
       "path": "./src/components/checkbox"
     },
     {
-      "path": "./src/core"
+      "path": "./stories"
     },
     {
-      "path": "./stories"
-    }
+      "path": "./src/core"
+    },
   ]
 }
