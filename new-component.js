@@ -39,8 +39,6 @@ function createFiles() {
                 }
             });
         });
-
-        console.log("Done.");
     });
 
 }

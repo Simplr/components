@@ -51,11 +51,18 @@
     "customElements": "custom-elements.json",
     "eslintConfig": {
         "parser": "@typescript-eslint/parser",
-        "extends": ["@open-wc", "prettier"],
-        "plugins": ["@typescript-eslint"],
+        "extends": [
+            "@open-wc",
+            "prettier"
+        ],
+        "plugins": [
+            "@typescript-eslint"
+        ],
         "rules": {
             "no-unused-vars": "off",
-            "@typescript-eslint/no-unused-vars": ["error"],
+            "@typescript-eslint/no-unused-vars": [
+                "error"
+            ],
             "import/no-unresolved": "off",
             "import/extensions": [
                 "error",
@@ -73,11 +80,9 @@
         "tabWidth": 4,
         "useTabs": false,
         "semi": true,
-        "singleQuote": true,
         "trailingComma": "all",
         "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "arrowParens": "avoid"
+        "jsxBracketSameLine": false
     },
     "husky": {
         "hooks": {
@@ -85,7 +90,13 @@
         }
     },
     "lint-staged": {
-        "src/**/*.ts": ["eslint --fix", "prettier --write"]
+        "src/**/*.ts": [
+            "eslint --fix",
+            "prettier --write"
+        ]
     },
-    "workspaces": ["src/components/*", "src/core"]
+    "workspaces": [
+        "src/components/*",
+        "src/core"
+    ]
 }
