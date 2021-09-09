@@ -27,6 +27,6 @@ const Dialog: Story<ArgTypes> = ({ }: ArgTypes) => {
         <style></style>
         <simplr-button @click=${openDialog} primary elevated>Open Dialog</simplr-button>
     `;
-}
+};
 
 export const Regular = Dialog.bind({});

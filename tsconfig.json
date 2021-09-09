@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/file-input"
+    },
+    {
       "path": "./src/components/dialog"
     },
     {
@@ -33,6 +36,6 @@
     },
     {
       "path": "./src/core"
-    },
+    }
   ]
 }
