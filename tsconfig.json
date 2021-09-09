@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/input"
+    },
+    {
       "path": "./src/components/file-input"
     },
     {
