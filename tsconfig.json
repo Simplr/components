@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/tabs"
+    },
+    {
       "path": "./src/components/input"
     },
     {
