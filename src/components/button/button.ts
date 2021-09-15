@@ -28,6 +28,9 @@ export class SimplrButton extends LitElement {
     @property({ reflect: true, type: Boolean })
     rounded: boolean = false;
 
+    @property({ reflect: true, type: Boolean })
+    small: boolean = false;
+
     // Button types
     @property({ reflect: true, type: Boolean })
     primary: boolean = false;

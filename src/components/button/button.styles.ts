@@ -26,6 +26,10 @@ export const buttonStyles = [
             color: var(--text-color);
             overflow: hidden;
         }
+        :host([small]) {
+            padding: 0;
+            line-height: var(--size);
+        }
         :host([contained]) {
             color: var(--alternative-text-color);
             background-color: var(--main-color);
