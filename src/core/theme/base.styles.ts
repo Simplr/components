@@ -7,5 +7,6 @@ export const baseStyles = css`
         --secondary-color: #f94416;
         --success-color: #41d888;
         --alternative-text-color: #fff;
+        --background-color: #2f2f2f;
     }
 `;

@@ -1,0 +1,16 @@
+{
+  "name": "@simplr-wc/drawer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/drawer.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "*",
+    "@simplr-wc/components-core": "*"
+  }
+}
