@@ -8,5 +8,7 @@ export const baseStyles = css`
         --success-color: #41d888;
         --alternative-text-color: #fff;
         --background-color: #2f2f2f;
+        --light-background-color: #cbcece;
+        --text-color: #232320;
     }
 `;
