@@ -10,7 +10,7 @@ export class SimplrTabPanel extends LitElement {
     }
 
     render() {
-        return html`<p>Foo</p>`;
+        return html`<slot></slot>`;
     }
 
     static get styles() {

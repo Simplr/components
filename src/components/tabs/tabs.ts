@@ -39,8 +39,8 @@ export class SimplrTabs extends LitElement {
 
     private findTabPanelDuo(val: string) {
         return {
-            panel: this.getPanels().find(pan => pan.getAttribute('value') === val),
-            tab: this.getTabs().find(tab => tab.getAttribute('value') === val),
+            panel: this.getPanels().find(pan => pan.getAttribute('value') === val) as HTMLElement,
+            tab: this.getTabs().find(tab => tab.getAttribute('value') === val) as HTMLElement,
         };
     }
 
@@ -63,10 +63,18 @@ export class SimplrTabs extends LitElement {
         const tabPanelDuo = this.findTabPanelDuo(tabValue);
         tabPanelDuo.panel?.setAttribute('selected', '');
         tabPanelDuo.tab?.setAttribute('selected', '');
+
+        const tabMarkerWidth = tabPanelDuo.tab?.clientWidth;
+        const tabMarkerOffset = tabPanelDuo.tab?.offsetLeft;
+        this.style.setProperty('--tab-header-width', `${tabMarkerWidth}px`);
+        this.style.setProperty('--tab-header-offset', `${tabMarkerOffset}px`);
     }
 
     render() {
-        return html`<div class="tabs"><slot @slotchange=${this.movePanels}></slot></div>
+        return html`<div class="tabs">
+                <slot @slotchange=${this.movePanels}></slot>
+                <span class="marker"> </span>
+            </div>
             <div class="panels"><slot name="tab-panels"></slot></div> `;
     }
 
