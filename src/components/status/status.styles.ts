@@ -17,7 +17,7 @@ export const statusStyles = [
             font-weight: var(--weight);
         }
         :host([status='main']) {
-            --color: var(--primary-color);
+            --color: var(--main-color);
         }
         :host([status='primary']) {
             --color: var(--primary-color);

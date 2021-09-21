@@ -7,9 +7,8 @@ export const listStyles = [
         :host {
             display: flex;
             flex-direction: column;
-        }
-
-        :host([elevated]) {
+            border-bottom: 4px solid rgb(214, 209, 224);
+            border-radius: 4px;
         }
     `,
 ];
@@ -24,7 +23,7 @@ export const listItemStyles = [
             --hover-background: rgba(0, 0, 0, 0.04);
 
             color: var(--text-color);
-            padding: 1rem;
+            padding: 0.6rem 1rem;
             border: 1px solid #d6d1e0;
             transition: 100ms ease-in-out;
             display: flex;
