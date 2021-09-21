@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import '@simplr-wc/list';
 import '@simplr-wc/button';
+import '@simplr-wc/status';
 import { Story } from './story-types.js';
 
 export default {
@@ -12,10 +13,10 @@ export default {
 export interface ArgTypes { }
 
 const employees = [
-    { name: 'Matias', title: 'CTO' },
-    { name: 'Santeri', title: 'CEO' },
-    { name: 'Jussi', title: 'Software Developer' },
-    { name: 'Silver', title: 'CFO' },
+    { name: 'Matias', title: 'CTO', status: { status: "primary", text: "Active" } },
+    { name: 'Santeri', title: 'CEO', status: { status: "primary", text: "Active" } },
+    { name: 'Jussi', title: 'Software Developer', status: { status: "success", text: "Pending" } },
+    { name: 'Silver', title: 'CFO', status: { status: "secondary", text: "Inactive" } },
 ];
 
 const List: Story<ArgTypes> = ({ }: ArgTypes) => html`
@@ -23,6 +24,7 @@ const List: Story<ArgTypes> = ({ }: ArgTypes) => html`
         .name-and-title {
             display: flex;
             flex-direction: column;
+            margin-right: 1rem;
         }
 
         .subtitle {
@@ -40,6 +42,7 @@ const List: Story<ArgTypes> = ({ }: ArgTypes) => html`
                         <label>${emp.name}</label>
                         <label class="subtitle">${emp.title}</label>
                     </span>
+                    <simplr-status status="${emp.status.status}">${emp.status.text}</simplr-status>
                     <simplr-button secondary small rounded slot="right">X</simplr-button>
                 </simplr-list-item>
             `,

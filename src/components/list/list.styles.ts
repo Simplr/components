@@ -40,6 +40,7 @@ export const listItemStyles = [
 
         slot {
             display: flex;
+            align-items: center;
         }
     `,
 ];

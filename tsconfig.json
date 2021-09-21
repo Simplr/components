@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/status"
+    },
+    {
       "path": "./src/components/list"
     },
     {
