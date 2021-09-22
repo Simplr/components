@@ -1,0 +1,13 @@
+# This is a basic workflow that is manually triggered
+on: [push]
+
+name: "Publish Storybook to GitHub pages"
+
+
+
+runs:
+  using: ubuntu-latest
+
+  steps:
+    - run: npm run publish:gh-pages
+      shell: bash
