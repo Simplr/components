@@ -16,10 +16,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install and Build
-        run: |
-          npm install
-          npm run storybook:build
+      - name: Setup Node.js and Install
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install
+
+      - name: Build
+        run: npm run storybook:build
         shell: bash
 
       - name: Deploy

@@ -35,6 +35,9 @@
       "path": "./src/components/card"
     },
     {
+      "path": "./src/components/checkbox"
+    },
+    {
       "path": "./src/components/checkbox-group"
     },
     {
@@ -45,9 +48,6 @@
     },
     {
       "path": "./src/components/notification"
-    },
-    {
-      "path": "./src/components/checkbox"
     },
     {
       "path": "./stories"

@@ -22,7 +22,7 @@
         "build-components": "npm run build --workspaces",
         "storybook": "npm run build && concurrently -k -r \"npm run watch\" \"npm run run-storybook\"",
         "run-storybook": "wds -c .storybook/server.mjs",
-        "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
+        "storybook:build": "npm run build && build-storybook",
         "new:component": "node new-component.js",
         "publish:gh-pages": "./build-gh-pages.sh"
     },
