@@ -14,12 +14,35 @@ export class SimplrMenu extends LitElement {
     @property({ type: String, reflect: true })
     dir: 'up' | 'down' = 'down';
 
+    outsideClickHandle: any;
+
+    firstUpdated() {
+        this.outsideClickHandle = this.closeOnOutsideClick.bind(this);
+    }
+
     open() {
         this.visible = true;
+        window.requestAnimationFrame(() => {
+            document.addEventListener('click', this.outsideClickHandle);
+        });
+        this.doEvent();
     }
 
     close() {
         this.visible = false;
+        document.removeEventListener('click', this.outsideClickHandle);
+        this.doEvent();
+    }
+
+    doEvent() {
+        const ev = new CustomEvent('simplr-menu-toggle', { detail: { visible: this.visible } });
+        this.dispatchEvent(ev);
+    }
+
+    closeOnOutsideClick(e: MouseEvent) {
+        if (e.target !== this && !this.contains(e.target as Node)) {
+            this.close();
+        }
     }
 
     render() {

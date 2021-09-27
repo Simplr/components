@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { actionMenuStyles } from './action-menu.styles';
 import '@simplr-wc/components-core/loading';
 
@@ -14,17 +14,23 @@ export class SimplrActionMenu extends LitElement {
     @property({ type: String, reflect: true })
     for: string | undefined;
 
+    @state()
+    target: any | undefined;
+
     firstUpdated() {
         this.addEventListener('click', this.toggle);
+        this.target = document.querySelector(`#${this.for}`) as HTMLElement;
+        this.target?.addEventListener('simplr-menu-toggle', (e: CustomEvent) => {
+            this.open = e.detail.visible;
+        });
     }
 
     toggle() {
         this.open = !this.open;
-        const target = document.querySelector(`#${this.for}`) as any;
         if (this.open) {
-            target.open();
+            this.target?.open();
         } else {
-            target.close();
+            this.target?.close();
         }
     }
 

@@ -28,6 +28,11 @@ const Menu: Story<ArgTypes> = ({ elevated, interactable }: ArgTypes) => {
             (document.querySelector('simplr-menu') as any).open();
         }
     }
+    setTimeout(() => {
+        document.querySelector('simplr-menu')?.addEventListener('simplr-menu-toggle', (e: any) => {
+            isOpen = e.detail.visible;
+        });
+    }, 500);
 
     return html`
         ${interactable ? html`<simplr-button @click=${toggleMenu} elevated>Toggle</simplr-button>` : ''}
