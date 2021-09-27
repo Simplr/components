@@ -81,10 +81,20 @@ export class SimplrCheckbox extends LitElement {
         this.appendChild(this.labelElem);
     }
 
+    private createId(): string {
+        const id = `checkbox-${this.name}`;
+        let { label } = this;
+        if (label.includes(' ')) {
+            [label] = [...label.split(' ')];
+        }
+        return `${id}-${label}`;
+    }
+
     private updateInputAttributes(_updatedProperties: any) {
+        const id = this.createId();
         if (this.inputElem) {
             this.inputElem.name = this.name;
-            this.inputElem.id = `checkbox-${this.name}`;
+            this.inputElem.id = id;
             this.inputElem.value = this.value;
             this.inputElem.checked = this.checked;
             this.inputElem.disabled = this.disabled;
@@ -92,7 +102,7 @@ export class SimplrCheckbox extends LitElement {
         if (this.labelElem) {
             if (_updatedProperties.has('label') || _updatedProperties.has('name')) {
                 this.labelElem.innerText = this.label;
-                this.labelElem.setAttribute('for', `checkbox-${this.name}`);
+                this.labelElem.setAttribute('for', id);
             }
         }
     }
