@@ -28,6 +28,7 @@ export const baseStyles = css`
 
         --alternative-text-color: #fff;
         --background-color: #2f2f2f;
+        --bright-background-color: #fff;
         --light-background-color: #cbcece;
         --text-color: #232320;
 
