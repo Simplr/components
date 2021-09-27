@@ -1,0 +1,16 @@
+{
+  "name": "@simplr-wc/action-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/action-menu.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "*",
+    "@simplr-wc/components-core": "*"
+  }
+}

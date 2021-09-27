@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/action-menu"
+    },
+    {
       "path": "./src/components/menu"
     },
     {
