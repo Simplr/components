@@ -30,5 +30,7 @@ export const baseStyles = css`
         --background-color: #2f2f2f;
         --light-background-color: #cbcece;
         --text-color: #232320;
+
+        --border-color: rgb(238, 238, 238);
     }
 `;

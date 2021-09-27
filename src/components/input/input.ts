@@ -23,6 +23,9 @@ export class SimplrInput extends LitElement {
     @property({ type: String, reflect: true })
     placeholder: string = '';
 
+    @property({ type: String, reflect: true })
+    subtitle: string = '';
+
     @property({ type: Boolean, reflect: true })
     disabled: boolean = false;
 
@@ -66,6 +69,8 @@ export class SimplrInput extends LitElement {
             this.inputElem.type = this.type;
             this.inputElem.disabled = this.disabled;
             this.inputElem.name = this.name;
+            this.inputElem.autocomplete = 'off';
+            this.inputElem.placeholder = this.placeholder;
             if (this.step) {
                 this.inputElem.step = this.step;
             }
@@ -74,7 +79,6 @@ export class SimplrInput extends LitElement {
 
     private addListeners(): void {
         this.inputElem?.addEventListener('input', this.handleInput.bind(this));
-        this.inputElem?.addEventListener('focus', this.handleFocus.bind(this));
         this.inputElem?.addEventListener('blur', this.handleBlur.bind(this));
     }
 
@@ -98,21 +102,17 @@ export class SimplrInput extends LitElement {
         this.invalid = !this.inputElem?.checkValidity() || false;
     }
 
-    private handleFocus() {
-        if (this.inputElem) {
-            this.inputElem.placeholder = this.placeholder;
-        }
-    }
-
     private handleBlur() {
-        if (this.inputElem) {
-            this.inputElem.placeholder = '';
-        }
         this.validate();
     }
 
     render() {
-        return html`<slot></slot>`;
+        return html`<slot></slot>${this.renderSubtitle()}`;
+    }
+
+    renderSubtitle() {
+        if (this.subtitle.length <= 0) return '';
+        return html`<label class="subtitle">${this.subtitle}</label>`;
     }
 
     static get styles() {

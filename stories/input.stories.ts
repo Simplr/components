@@ -49,6 +49,7 @@ const Input: Story<ArgTypes> = ({ type, required, disabled, invalid }: ArgTypes)
                 type="${type}"
                 label="Testing input two"
                 name="input-two"
+                subtitle="Please refrain from using the input fields too much"
                 ?required=${required}
                 ?disabled=${disabled}
                 ?invalid=${invalid}

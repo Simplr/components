@@ -5,14 +5,13 @@ export const inputStyles = [
     baseStyles,
     css`
         :host {
-            --primary-color: #0087d7;
-            --secondary-color: #f94416;
             --background-color: transparent;
             --text-color: rgba(0, 0, 0, 0.87);
             --underline-size: 1px;
             --highlight-color: var(--primary-color);
             --font-size: 16px;
             --transition: 200ms ease-in-out;
+            --subtitle-font-size: calc(0.7 * var(--font-size));
             display: block;
             width: 100%;
             position: relative;
@@ -20,51 +19,38 @@ export const inputStyles = [
             overflow: visible;
             color: var(--text-color);
             background: var(--background-color);
+            border-radius: 2px;
         }
         :host([invalid]) {
             --highlight-color: var(--secondary-color);
             --text-color: var(--secondary-color);
         }
+
+        :host([invalid]) ::slotted(input) {
+            box-shadow: 0px 1px 4px 1px var(--secondary-color);
+        }
+
         ::slotted(label) {
-            position: absolute;
-            opacity: 1;
-            font-size: calc(var(--font-size) * 0.8);
+            font-size: var(--font-size);
             transition: var(--transition);
-            transform-origin: left;
-            bottom: 6px;
         }
         ::slotted(input) {
             width: 100%;
             height: 100%;
             font-size: inherit;
-            border: none;
+            border: 2px solid var(--border-color);
             position: relative;
             outline: none;
             background: transparent;
-            font-size: calc(var(--font-size) * 0.8);
-            padding: 3px 0;
-        }
-        :host::before,
-        :host::after {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: var(--underline-size);
-            z-index: 1;
-        }
-        :host::before {
-            width: 100%;
-            background: var(--text-color);
-            opacity: 1;
-        }
-        :host::after {
-            width: 0;
-            background: var(--highlight-color);
+            font-size: var(--font-size);
+            padding: 0.4rem;
+            margin: 0.5rem 0 0 0;
+            border-radius: 2px;
             transition: var(--transition);
-            right: 0;
-            margin: 0 auto;
+        }
+
+        :host(:focus-within) ::slotted(input) {
+            box-shadow: 0px 1px 4px 1px var(--primary-color);
         }
         /* Focus events */
         :host(:focus-within)::after {
@@ -72,8 +58,6 @@ export const inputStyles = [
         }
         :host(:focus-within) ::slotted(label),
         :host([hasContent]) ::slotted(label) {
-            transform: scale(0.6) translate(calc(var(--font-size) * 0.1), calc(var(--font-size) * -1.3));
-            opacity: 0.9;
         }
         :host(:focus-within) ::slotted(label) {
             color: var(--highlight-color);
@@ -82,6 +66,11 @@ export const inputStyles = [
         :host([disabled]) ::slotted(label),
         ::slotted(input[disabled]) {
             opacity: 0.7;
+        }
+
+        .subtitle {
+            font-size: var(--subtitle-font-size);
+            opacity: 0.6;
         }
     `,
 ];
