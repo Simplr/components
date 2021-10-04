@@ -15,6 +15,7 @@ export const buttonStyles = [
             text-align: center;
             font-size: var(--size);
             width: fit-content;
+            height: fit-content;
             cursor: pointer;
             line-height: 36px;
             padding: 0 16px;

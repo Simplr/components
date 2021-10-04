@@ -17,7 +17,7 @@ export interface ArgTypes {
 const ActionMenu: Story<ArgTypes> = ({ vertical }: ArgTypes) => html`
     <simplr-action-menu for="demo-menu" ?vertical=${vertical}></simplr-action-menu>
 
-    <simplr-menu dir="down" id="demo-menu">
+    <simplr-menu dir="down" id="demo-menu" anchor-to="simplr-action-menu[for='demo-menu']" anchor-side="right">
         <simplr-menu-item>Your Profile</simplr-menu-item>
         <simplr-menu-item>Your repositories</simplr-menu-item>
         <simplr-menu-item divider></simplr-menu-item>

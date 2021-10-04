@@ -7,6 +7,13 @@ export const menuStyles = [
         :host {
             --background-color: --light-background-color;
 
+            --offset-top: 0px;
+            --offset-left: 0px;
+
+            position: absolute;
+            top: var(--offset-top);
+            left: var(--offset-left);
+
             display: flex;
             flex-direction: column;
             border-radius: 4px;
@@ -15,7 +22,7 @@ export const menuStyles = [
             width: fit-content;
             transform: scaleY(0);
             transform-origin: top;
-            transition: 100ms ease-in-out;
+            transition: 100ms ease-in-out transform;
         }
 
         :host([dir='up']) {
