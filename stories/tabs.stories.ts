@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import '@simplr-wc/tabs';
+import '@simplr-wc/icon';
 import { Story } from './story-types.js';
 
 export default {
