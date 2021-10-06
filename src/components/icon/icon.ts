@@ -15,7 +15,7 @@ export class SimplrIcon extends LitElement {
     size: string = '1rem';
 
     @property({ type: String, reflect: true })
-    color: string = '#000000';
+    color: string | undefined;
 
     @state()
     iconTemplate: TemplateResult = html``;
@@ -27,7 +27,7 @@ export class SimplrIcon extends LitElement {
         if (_changedProperties.has('size')) {
             this.style.setProperty('--icon-size', this.size);
         }
-        if (_changedProperties.has('color')) {
+        if (_changedProperties.has('color') && this.color) {
             this.style.setProperty('--icon-color', this.color);
         }
     }
