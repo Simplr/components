@@ -74,7 +74,7 @@ export const buttonStyles = [
             pointer-events: none;
         }
         :host([rounded]) {
-            padding: 0.5rem;
+            padding: 0.2rem 0;
             border-radius: 50%;
         }
         :host([rounded])::after {
