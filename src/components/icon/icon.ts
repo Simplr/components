@@ -3,6 +3,9 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { getIconSvg } from './fetcher.js';
 import { iconStyles } from './icon.styles.js';
 
+/**
+ * Uses Bootstrap icons https://icons.getbootstrap.com/
+ * */
 @customElement('simplr-icon')
 export class SimplrIcon extends LitElement {
     @property({ type: String, reflect: true })
@@ -12,7 +15,7 @@ export class SimplrIcon extends LitElement {
     size: string = '1rem';
 
     @property({ type: String, reflect: true })
-    color: string = '#000000';
+    color: string | undefined;
 
     @state()
     iconTemplate: TemplateResult = html``;
@@ -24,7 +27,7 @@ export class SimplrIcon extends LitElement {
         if (_changedProperties.has('size')) {
             this.style.setProperty('--icon-size', this.size);
         }
-        if (_changedProperties.has('color')) {
+        if (_changedProperties.has('color') && this.color) {
             this.style.setProperty('--icon-color', this.color);
         }
     }

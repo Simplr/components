@@ -6,7 +6,6 @@ export const iconStyles = [
     css`
         :host {
             --icon-size: 1rem;
-            --icon-color: #000000;
 
             display: flex;
             width: fit-content;
@@ -14,7 +13,7 @@ export const iconStyles = [
         }
 
         svg {
-            color: var(--icon-color);
+            color: var(--icon-color, inherit);
             width: var(--icon-size);
             height: var(--icon-size);
         }

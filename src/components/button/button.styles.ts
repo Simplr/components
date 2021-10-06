@@ -18,7 +18,7 @@ export const buttonStyles = [
             height: fit-content;
             cursor: pointer;
             line-height: 36px;
-            padding: 0 16px;
+            padding: 0 8px;
             border-radius: 4px;
             outline: none;
             transition: 200ms ease-in-out;
@@ -74,7 +74,7 @@ export const buttonStyles = [
             pointer-events: none;
         }
         :host([rounded]) {
-            padding: 0.5rem;
+            padding: 0.2rem 0;
             border-radius: 50%;
         }
         :host([rounded])::after {
@@ -85,14 +85,9 @@ export const buttonStyles = [
         :host(:focus-within)::after {
             opacity: 0.3;
         }
-        ::slotted(svg) {
-            fill: var(--text-color);
-            height: var(--size);
-            width: var(--size);
-            padding-right: calc(var(--size) * 0.7);
-        }
-        :host([rounded]) ::slotted(svg) {
-            padding: 0;
+
+        ::slotted(*) {
+            padding: 0 0.25rem;
         }
 
         button {
@@ -103,6 +98,9 @@ export const buttonStyles = [
             border: none;
             line-height: inherit;
             cursor: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     `,
 ];

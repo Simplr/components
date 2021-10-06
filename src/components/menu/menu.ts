@@ -29,7 +29,6 @@ export class SimplrMenu extends LitElement {
         this.outsideClickHandle = this.closeOnOutsideClick.bind(this);
         document.addEventListener('mousemove', e => {
             this.mousePos = { x: e.x, y: e.y };
-            console.log(this.mousePos);
         });
     }
 
