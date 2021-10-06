@@ -3,6 +3,9 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { getIconSvg } from './fetcher.js';
 import { iconStyles } from './icon.styles.js';
 
+/**
+ * Uses Bootstrap icons https://icons.getbootstrap.com/
+ * */
 @customElement('simplr-icon')
 export class SimplrIcon extends LitElement {
     @property({ type: String, reflect: true })
