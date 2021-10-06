@@ -1,5 +1,6 @@
 import { html, TemplateResult } from 'lit';
 import '@simplr-wc/button';
+import '@simplr-wc/icon';
 import { Story } from './story-types.js';
 
 export default {
@@ -34,7 +35,7 @@ export interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({ primary, secondary, success }: ArgTypes) => html`
-    <div style="display: flex; width: 45rem; justify-content: space-between;">
+    <div style="display: flex; width: auto; justify-content: space-between;">
         <simplr-button ?primary=${primary} ?secondary=${secondary} ?success=${success}>Default</simplr-button>
         <simplr-button elevated ?primary=${primary} ?secondary=${secondary} ?success=${success}>Elevated</simplr-button>
         <simplr-button contained ?primary=${primary} ?secondary=${secondary} ?success=${success}
@@ -45,6 +46,14 @@ const Template: Story<ArgTypes> = ({ primary, secondary, success }: ArgTypes) =>
         <simplr-button elevated loading ?primary=${primary} ?secondary=${secondary} ?success=${success}
             >Loading</simplr-button
         >
+        <simplr-button outlined ?primary=${primary} ?secondary=${secondary} ?success=${success}>
+            <simplr-icon icon="search"></simplr-icon>
+            Pre icon
+        </simplr-button>
+        <simplr-button outlined ?primary=${primary} ?secondary=${secondary} ?success=${success}>
+            Post icon
+            <simplr-icon icon="search"></simplr-icon>
+        </simplr-button>
     </div>
 `;
 
