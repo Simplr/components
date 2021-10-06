@@ -29,6 +29,7 @@ export class SimplrMenu extends LitElement {
         this.outsideClickHandle = this.closeOnOutsideClick.bind(this);
         document.addEventListener('mousemove', e => {
             this.mousePos = { x: e.x, y: e.y };
+            console.log(this.mousePos);
         });
     }
 
@@ -65,7 +66,7 @@ export class SimplrMenu extends LitElement {
             this.style.setProperty('--offset-left', `${xOffset}px`);
         } else {
             this.style.setProperty('--offset-top', `${this.mousePos.y}px`);
-            this.style.setProperty('--offset-left', `${this.mousePos.y}px`);
+            this.style.setProperty('--offset-left', `${this.mousePos.x}px`);
         }
     }
 
