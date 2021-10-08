@@ -7,7 +7,9 @@ export const tagStyles = [
         :host {
             font-size: 0.85rem;
             width: fit-content;
+            width: -moz-fit-content;
             height: fit-content;
+            height: -moz-fit-content;
             display: flex;
             align-items: center;
             justify-content: space-between;

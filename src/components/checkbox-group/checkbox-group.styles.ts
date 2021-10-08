@@ -8,6 +8,7 @@ export const checkboxGroupStyles = [
             display: flex;
             flex-direction: column;
             width: fit-content;
+            width: -moz-fit-content;
             cursor: pointer;
         }
         slot {

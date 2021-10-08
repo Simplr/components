@@ -12,6 +12,7 @@ export const radioStyles = [
             --size: 16px;
             display: flex;
             width: fit-content;
+            width: -moz-fit-content;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -62,7 +63,7 @@ export const radioStyles = [
         }
         :host([checked]) .radio-field path {
             stroke-dashoffset: 0;
-            d: path('M1.5 12.5 l7.5 6 l12 -15');
+            /*d: path('M1.5 12.5 l7.5 6 l12 -15');*/
         }
         :host([checked]) .radio-field {
             background: var(--main-color);

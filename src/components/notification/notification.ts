@@ -1,6 +1,6 @@
 import { html, LitElement, TemplateResult } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
-import { errorSign } from './notification.icons';
+import { errorSign, infoSign, successSign, warningSign } from './notification.icons';
 import { notificationStyles } from './notification.styles';
 
 type NotificationRole = 'info' | 'error' | 'warning' | 'success';
@@ -101,13 +101,28 @@ export class SimplrNotification extends LitElement {
         }
     }
 
+    private getSign(): string {
+        switch (this.role) {
+            case 'info':
+                return infoSign;
+            case 'error':
+                return errorSign;
+            case 'success':
+                return successSign;
+            case 'warning':
+                return warningSign;
+            default:
+                return '';
+        }
+    }
+
     render(): TemplateResult {
         return html`
             <div class="notification">
                 <div class="icon-area">
                     <div class="status-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="" />
+                            <path d="${this.getSign()}" />
                         </svg>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 /* @ts-nocheck */
-import { css, unsafeCSS } from 'lit';
+import { css } from 'lit';
 import { baseStyles } from '@simplr-wc/components-core';
-import { errorSign, infoSign, successSign, warningSign } from './notification.icons';
 
 export const notificationStyles = [
     baseStyles,
@@ -70,18 +69,6 @@ export const notificationStyles = [
         }
         :host([warning]) {
             --notification-color: var(--warning-color);
-        }
-        :host([success]) .status-icon path {
-            d: path('${unsafeCSS(successSign)}');
-        }
-        :host([error]) .status-icon path {
-            d: path('${unsafeCSS(errorSign)}');
-        }
-        :host([info]) .status-icon path {
-            d: path('${unsafeCSS(infoSign)}');
-        }
-        :host([warning]) .status-icon path {
-            d: path('${unsafeCSS(warningSign)}');
         }
         .notification {
             position: relative;

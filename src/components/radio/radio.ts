@@ -103,7 +103,9 @@ export class SimplrRadio extends LitElement {
 
     render() {
         return html`<div class="radio-field">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="${this.checked ? 'M1.5 12.5 l7.5 6 l12 -15' : ''}" />
+                </svg>
             </div>
             <slot></slot>`;
     }

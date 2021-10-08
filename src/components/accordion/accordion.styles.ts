@@ -48,6 +48,7 @@ export const accordionStyles = [
         slot:not([name='label']) {
             display: block;
             height: fit-content;
+            height: -moz-fit-content;
             padding: var(--content-padding);
         }
         :host([open]) {

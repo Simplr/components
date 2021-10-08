@@ -9,7 +9,9 @@ export const actionMenuStyles = [
             align-items: center;
             justify-content: center;
             width: fit-content;
+            width: -moz-fit-content;
             height: fit-content;
+            height: -moz-fit-content;
             --size: 18px;
             --height: var(--size);
             --width: var(--size);

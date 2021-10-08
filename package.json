@@ -10,10 +10,10 @@
         ".": "./dist/src/index.js"
     },
     "scripts": {
-        "analyze": "cem analyze --litelement",
+        "analyze": "cem analyze --litelement --exclude dist stories demo",
         "start": "npm run storybook",
-        "build": "tsc -b && npm run analyze -- --exclude dist",
-        "prepublish": "tsc && npm run analyze -- --exclude dist",
+        "build": "tsc -b && npm run analyze",
+        "prepublish": "tsc && npm run analyze",
         "lint": "eslint --ext .ts,.html . --ignore-path .gitignore --ignore-pattern stories && prettier \"**/*.ts\" --check --ignore-path .gitignore",
         "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore --ignore-pattern stories && prettier \"**/*.ts\" --write --ignore-path .gitignore",
         "test": "tsc && wtr --coverage",
