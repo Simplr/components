@@ -9,7 +9,9 @@ export const iconStyles = [
 
             display: flex;
             width: fit-content;
+            width: -moz-fit-content;
             height: fit-content;
+            height: -moz-fit-content;
         }
 
         svg {

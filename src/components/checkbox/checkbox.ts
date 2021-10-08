@@ -107,10 +107,20 @@ export class SimplrCheckbox extends LitElement {
         }
     }
 
+    getPath(): string {
+        if (this.checked) {
+            return 'M1.5 12.5 l7.5 6 l12 -15';
+        }
+        if (this.indeterminate) {
+            return 'M3.5 12.5 l17 0';
+        }
+        return '';
+    }
+
     render() {
         return html`<div class="checkbox-field">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="" />
+                    <path d="${this.getPath()}" />
                 </svg>
             </div>
             <slot></slot>`;

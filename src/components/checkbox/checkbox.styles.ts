@@ -12,6 +12,7 @@ export const checkboxStyles = [
             --size: 16px;
             display: flex;
             width: fit-content;
+            width: -moz-fit-content;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -62,11 +63,11 @@ export const checkboxStyles = [
         }
         :host([checked]) .checkbox-field path {
             stroke-dashoffset: 0;
-            d: path('M1.5 12.5 l7.5 6 l12 -15');
+            /*d: path('M1.5 12.5 l7.5 6 l12 -15');*/
         }
         :host([indeterminate]) .checkbox-field path {
             stroke-dashoffset: 0;
-            d: path('M3.5 12.5 l17 0');
+            /*d: path('M3.5 12.5 l17 0');*/
         }
         :host([indeterminate]) .checkbox-field,
         :host([checked]) .checkbox-field {
