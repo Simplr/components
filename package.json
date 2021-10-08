@@ -1,5 +1,5 @@
 {
-    "name": "simplr-components",
+    "name": "@simplr-wc/components",
     "description": "Webcomponent simplr-components following open-wc recommendations",
     "license": "MIT",
     "author": "simplr-components",
