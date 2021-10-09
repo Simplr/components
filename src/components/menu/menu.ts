@@ -1,5 +1,6 @@
 import { html, LitElement, PropertyValues } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { debounce, isArrowDown, isArrowUp, isEnter, isEsc } from '@simplr-wc/components-core';
 import { menuStyles } from './menu.styles';
 import '@simplr-wc/components-core/loading';
 
@@ -21,22 +22,128 @@ export class SimplrMenu extends LitElement {
     anchorSide: string | undefined;
 
     @state()
+    items: HTMLElement[] = [];
+
+    @state()
+    focuseditemIndex: number = -1;
+
+    @state()
     mousePos: { x: number; y: number } = { x: 0, y: 0 };
 
+    @state()
+    transitioning: boolean = false;
+
+    @query('slot')
+    itemSlot: HTMLSlotElement | undefined;
+
+    // Event listener handles with binds on them
+    // Used for cleanup
     outsideClickHandle: any;
 
-    firstUpdated() {
+    mouseMoveHandle: any;
+
+    keyDownHandle: any;
+
+    resizeObserver: ResizeObserver | undefined;
+
+    constructor() {
+        super();
+        // Save references so that we can later remove listeners to these
         this.outsideClickHandle = this.closeOnOutsideClick.bind(this);
-        document.addEventListener('mousemove', e => {
-            this.mousePos = { x: e.x, y: e.y };
+        this.mouseMoveHandle = this.updateMousePos.bind(this);
+        this.keyDownHandle = this.doKeyboardNavigation.bind(this);
+    }
+
+    firstUpdated() {
+        if (!this.anchorTo) {
+            document.addEventListener('mousemove', this.mouseMoveHandle);
+        }
+
+        this.resizeObserver = new ResizeObserver(() => {
+            this.queueResize();
         });
+        this.resizeObserver.observe(this);
+
+        this.addEventListener('click', () => this.close());
     }
 
     updated(_changeProperties: PropertyValues) {
         // If toggled open
-        if (_changeProperties.has('visible') && this.visible) {
-            this._handleMenuPosition();
+        if (_changeProperties.has('visible')) {
+            if (this.visible) {
+                document.addEventListener('keydown', this.keyDownHandle);
+                this._handleMenuPosition();
+            } else {
+                document.removeEventListener('keydown', this.keyDownHandle);
+            }
         }
+    }
+
+    disconnectedCallback() {
+        document.removeEventListener('mousemove', this.mouseMoveHandle);
+        this.resizeObserver?.unobserve(this);
+        this.resizeObserver?.disconnect();
+    }
+
+    private updateMousePos(e: MouseEvent) {
+        this.mousePos = { x: e.x, y: e.y };
+    }
+
+    private queueResize() {
+        debounce('menu-resize', 200, () => {
+            if (!this.transitioning) {
+                this.setHeight();
+            }
+        });
+    }
+
+    private doKeyboardNavigation(e: KeyboardEvent) {
+        if (isArrowDown(e)) {
+            this.moveDown();
+        }
+        if (isArrowUp(e)) {
+            this.moveUp();
+        }
+
+        if (isEnter(e)) {
+            this.selectFocusedItem();
+        }
+
+        if (isEsc(e)) {
+            this.close();
+        }
+    }
+
+    private moveDown() {
+        if (this.focuseditemIndex < this.items.length - 1) {
+            this.focuseditemIndex += 1;
+            this.focusCurrentIndex();
+        }
+    }
+
+    private moveUp() {
+        if (this.focuseditemIndex > 0) {
+            this.focuseditemIndex -= 1;
+            this.focusCurrentIndex();
+        }
+    }
+
+    private selectFocusedItem() {
+        this.items[this.focuseditemIndex].click();
+    }
+
+    private focusCurrentIndex() {
+        this.items[this.focuseditemIndex].focus();
+    }
+
+    private async _mapSlottedItems(e: Event) {
+        const slot = e.target as HTMLSlotElement;
+        const slottedElements = slot.assignedElements();
+        this.items = slottedElements.filter(el => !el.hasAttribute('divider')) as HTMLElement[];
+        for (const item of this.items) {
+            item.tabIndex = 0;
+        }
+        this.queueResize();
     }
 
     _handleMenuPosition() {
@@ -73,8 +180,21 @@ export class SimplrMenu extends LitElement {
         return this.anchorTo !== undefined && this.anchorSide !== undefined;
     }
 
+    private setHeight() {
+        this.style.setProperty('--menu-height', `${this.itemSlot?.clientHeight ?? 0}px`);
+    }
+
+    private setTransitioning() {
+        this.transitioning = true;
+        this.addEventListener('transitionend', () => {
+            this.transitioning = false;
+        });
+    }
+
     open() {
         this.visible = true;
+        this.setHeight();
+        this.setTransitioning();
         window.requestAnimationFrame(() => {
             document.addEventListener('click', this.outsideClickHandle);
         });
@@ -83,6 +203,8 @@ export class SimplrMenu extends LitElement {
 
     close() {
         this.visible = false;
+        this.setTransitioning();
+        this.focuseditemIndex = -1;
         document.removeEventListener('click', this.outsideClickHandle);
         this.doEvent();
     }
@@ -99,7 +221,7 @@ export class SimplrMenu extends LitElement {
     }
 
     render() {
-        return html`<slot></slot>`;
+        return html`<slot @slotchange=${this._mapSlottedItems}></slot>`;
     }
 
     static get styles() {

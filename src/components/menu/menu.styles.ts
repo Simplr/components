@@ -18,11 +18,14 @@ export const menuStyles = [
             flex-direction: column;
             border-radius: 4px;
             background: var(--bright-background-color);
-            border: 2px solid var(--border-color);
+            border: 0 solid var(--border-color);
             width: fit-content;
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: 100ms ease-in-out transform;
+            height: 0px;
+            overflow-y: hidden;
+            overflow-x: clip;
+            /*transform: scaleY(0);
+              transform-origin: top;*/
+            transition: 200ms ease-in-out height;
         }
 
         :host([dir='up']) {
@@ -33,8 +36,13 @@ export const menuStyles = [
             transform-origin: top;
         }
 
+        slot {
+            display: block;
+        }
+
         :host([visible]) {
-            transform: scaleY(1);
+            height: var(--menu-height);
+            border: 2px solid var(--border-color);
         }
 
         :host([elevated]) {
@@ -55,7 +63,10 @@ export const menuItemStyles = [
             font-size: 0.8rem;
         }
 
-        :host(:hover) {
+        :host(:hover),
+        :host(:focus),
+        :host([selected]) {
+            outline: none;
             background: var(--primary-color);
             color: var(--alternative-text-color);
             fill: var(--alternative-text-color);
@@ -68,6 +79,10 @@ export const menuItemStyles = [
         slot[name='icon-after']::slotted(*) {
             padding-left: 0.5rem;
             margin-left: auto;
+        }
+
+        ::slotted(*) {
+            pointer-events: none;
         }
 
         :host([divider]) {
