@@ -99,9 +99,11 @@ export class SimplrMenu extends LitElement {
 
     private doKeyboardNavigation(e: KeyboardEvent) {
         if (isArrowDown(e)) {
+            e.preventDefault();
             this.moveDown();
         }
         if (isArrowUp(e)) {
+            e.preventDefault();
             this.moveUp();
         }
 
@@ -117,18 +119,32 @@ export class SimplrMenu extends LitElement {
     private moveDown() {
         if (this.focuseditemIndex < this.items.length - 1) {
             this.focuseditemIndex += 1;
-            this.focusCurrentIndex();
+            this.setSelectedOnFocusedItem();
         }
     }
 
     private moveUp() {
         if (this.focuseditemIndex > 0) {
             this.focuseditemIndex -= 1;
-            this.focusCurrentIndex();
+            this.setSelectedOnFocusedItem();
         }
     }
 
+    private removeSelectedStatuses() {
+        this.items
+            .filter(item => item.hasAttribute('selected'))
+            .forEach(item => {
+                item.removeAttribute('selected');
+            });
+    }
+
+    private setSelectedOnFocusedItem() {
+        this.removeSelectedStatuses();
+        this.items[this.focuseditemIndex].setAttribute('selected', '');
+    }
+
     private selectFocusedItem() {
+        this.focusCurrentIndex();
         this.items[this.focuseditemIndex].click();
     }
 
@@ -139,16 +155,26 @@ export class SimplrMenu extends LitElement {
     private async _mapSlottedItems(e: Event) {
         const slot = e.target as HTMLSlotElement;
         const slottedElements = slot.assignedElements();
-        this.items = slottedElements.filter(el => !el.hasAttribute('divider')) as HTMLElement[];
+        this.items = slottedElements.filter(
+            el => !el.hasAttribute('divider') && !el.hasAttribute('non-selectable'),
+        ) as HTMLElement[];
         for (const item of this.items) {
             item.tabIndex = 0;
         }
         this.queueResize();
+        if (this.focuseditemIndex > -1) {
+            this.focuseditemIndex = 0;
+            this.setSelectedOnFocusedItem();
+        }
     }
 
     _handleMenuPosition() {
         if (this._isAnchored()) {
-            const anchorTarget = document.querySelector(`${this.anchorTo}`);
+            const rootNode = this.getRootNode();
+            if (!(rootNode instanceof Element) && !(rootNode instanceof ShadowRoot)) {
+                return;
+            }
+            const anchorTarget = rootNode.querySelector(`${this.anchorTo}`);
             if (!anchorTarget) return;
 
             const boundingRect = anchorTarget?.getBoundingClientRect();
@@ -167,6 +193,12 @@ export class SimplrMenu extends LitElement {
             if (this.anchorSide?.includes('bottom')) {
                 yOffset = boundingRect.y + boundingRect.height;
             }
+            if (this.anchorSide?.includes('center-x')) {
+                xOffset = 0;
+            }
+            if (this.anchorSide?.includes('center-y')) {
+                yOffset = 0;
+            }
 
             this.style.setProperty('--offset-top', `${yOffset}px`);
             this.style.setProperty('--offset-left', `${xOffset}px`);
@@ -181,7 +213,8 @@ export class SimplrMenu extends LitElement {
     }
 
     private setHeight() {
-        this.style.setProperty('--menu-height', `${this.itemSlot?.clientHeight ?? 0}px`);
+        // Add 4 due to border
+        this.style.setProperty('--menu-height', `${(this.itemSlot?.clientHeight ?? 0) + 4}px`);
     }
 
     private setTransitioning() {
@@ -204,6 +237,7 @@ export class SimplrMenu extends LitElement {
     close() {
         this.visible = false;
         this.setTransitioning();
+        this.removeSelectedStatuses();
         this.focuseditemIndex = -1;
         document.removeEventListener('click', this.outsideClickHandle);
         this.doEvent();
@@ -221,7 +255,7 @@ export class SimplrMenu extends LitElement {
     }
 
     render() {
-        return html`<slot @slotchange=${this._mapSlottedItems}></slot>`;
+        return html`<slot @slotchange=${this._mapSlottedItems}> </slot>`;
     }
 
     static get styles() {

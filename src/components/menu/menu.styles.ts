@@ -10,9 +10,12 @@ export const menuStyles = [
             --offset-top: 0px;
             --offset-left: 0px;
 
+            --offset-x: 0px;
+            --offset-y: 0px;
+
             position: absolute;
-            top: var(--offset-top);
-            left: var(--offset-left);
+            top: calc(var(--offset-top) + var(--offset-y));
+            left: calc(var(--offset-left) + var(--offset-x));
 
             display: flex;
             flex-direction: column;
@@ -23,8 +26,6 @@ export const menuStyles = [
             height: 0px;
             overflow-y: hidden;
             overflow-x: clip;
-            /*transform: scaleY(0);
-              transform-origin: top;*/
             transition: 200ms ease-in-out height;
         }
 
@@ -92,6 +93,11 @@ export const menuItemStyles = [
             height: 2px;
             width: 101%;
             background: var(--border-color);
+        }
+
+        :host([non-selectable]) {
+            pointer-events: none;
+            cursor: auto;
         }
     `,
 ];

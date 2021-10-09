@@ -41,6 +41,9 @@ export class SimplrInput extends LitElement {
     @property({ type: Boolean, reflect: true })
     invalid: boolean = false;
 
+    @property({ type: String, reflect: true })
+    value: string | undefined;
+
     firstUpdated() {
         this.createElements();
         this.addListeners();
@@ -71,6 +74,7 @@ export class SimplrInput extends LitElement {
             this.inputElem.name = this.name;
             this.inputElem.autocomplete = 'off';
             this.inputElem.placeholder = this.placeholder;
+            this.inputElem.value = this.value ?? '';
             if (this.step) {
                 this.inputElem.step = this.step;
             }
@@ -85,6 +89,7 @@ export class SimplrInput extends LitElement {
     private handleInput(e: Event) {
         const target = e.target as HTMLInputElement;
         const hasContent = target.value.length > 0;
+        this.value = target.value;
         if (!hasContent && this.hasContent) {
             this.hasContent = false;
         }

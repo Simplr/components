@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/combobox"
+    },
+    {
       "path": "./src/components/icon"
     },
     {
