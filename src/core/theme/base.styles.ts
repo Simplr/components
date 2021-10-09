@@ -33,5 +33,7 @@ export const baseStyles = css`
         --text-color: #232320;
 
         --border-color: rgb(238, 238, 238);
+
+        box-sizing: border-box;
     }
 `;

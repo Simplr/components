@@ -10,12 +10,15 @@ export class SimplrMenuItem extends LitElement {
     @property({ type: Boolean, reflect: true })
     divider: boolean = false;
 
+    @property({ type: Boolean, attribute: 'non-selectable' })
+    nonSelectable: boolean = false;
+
     firstUpdated() {
         this.addEventListener('click', this.launchSelectEvent.bind(this));
     }
 
     launchSelectEvent() {
-        this.dispatchEvent(new CustomEvent('simplr-menu-item-selected', { detail: { item: this } }));
+        this.dispatchEvent(new CustomEvent('simplr-menu-item-selected', { detail: { item: this }, bubbles: true }));
     }
 
     render() {

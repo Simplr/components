@@ -12,7 +12,8 @@ export const inputStyles = [
             --font-size: 16px;
             --transition: 200ms ease-in-out;
             --subtitle-font-size: calc(0.7 * var(--font-size));
-            display: block;
+            display: flex;
+            flex-direction: column;
             width: 100%;
             position: relative;
             padding: calc(var(--font-size) * 0.65) 0 0 calc(var(--font-size) * 0.1);
@@ -31,10 +32,12 @@ export const inputStyles = [
         }
 
         ::slotted(label) {
+            box-sizing: border-box;
             font-size: var(--font-size);
             transition: var(--transition);
         }
         ::slotted(input) {
+            box-sizing: border-box;
             width: 100%;
             height: 100%;
             font-size: inherit;
