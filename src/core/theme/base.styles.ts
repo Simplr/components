@@ -31,6 +31,7 @@ export const baseStyles = css`
         --bright-background-color: #fff;
         --light-background-color: #cbcece;
         --text-color: #232320;
+        --gray-text-color: #808080;
 
         --border-color: rgb(238, 238, 238);
 

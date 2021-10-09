@@ -5,6 +5,9 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/breadcrumbs"
+    },
+    {
       "path": "./src/components/combobox"
     },
     {

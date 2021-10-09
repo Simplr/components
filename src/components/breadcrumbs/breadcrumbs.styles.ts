@@ -8,8 +8,6 @@ export const breadcrumbsStyles = [
             display: flex;
             flex-direction: row;
         }
-
-
     `,
 ];
 
@@ -18,7 +16,7 @@ export const breadcrumbsItemStyles = [
     css`
         :host {
             display: flex;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.3rem;
             cursor: pointer; /* auto */
             align-items: center;
             font-size: 0.8rem;
@@ -33,12 +31,22 @@ export const breadcrumbsItemStyles = [
             padding-right: 10px;
         }
 
+        a {
+            color: var(--primary-color);
+        }
+
+        a,
+        label {
+            flex-basis: 100%;
+            text-decoration: none;
+        }
+
         .chevron {
-            color: grey;
+            color: var(--gray-text-color);
         }
 
         :host([last]) {
-            color: grey;
+            color: var(--gray-text-color);
             pointer-events: none;
         }
     `,

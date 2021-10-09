@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import '@simplr-wc/breadcrumbs';
-import { Story } from './story-types.js';
 import '@simplr-wc/icon';
+import { Story } from './story-types.js';
 
 export default {
     title: 'Breadcrumbs',
@@ -9,19 +9,13 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes {}
+export interface ArgTypes { }
 
-const Breadcrumbs: Story<ArgTypes> = ({}: ArgTypes) => html`
+const Breadcrumbs: Story<ArgTypes> = ({ }: ArgTypes) => html`
     <simplr-breadcrumbs>
-        <simplr-breadcrumbs-item href="/">
-            Home
-        </simplr-breadcrumbs-item>
-        <simplr-breadcrumbs-item href="/user">
-            User
-        </simplr-breadcrumbs-item>
-        <simplr-breadcrumbs-item href="/user/1">
-            Profile
-        </simplr-breadcrumbs-item>
+        <simplr-breadcrumbs-item href="/?path=/story"> Home </simplr-breadcrumbs-item>
+        <simplr-breadcrumbs-item href="/?path=/story/breadcrumbs"> Breadcrumbs </simplr-breadcrumbs-item>
+        <simplr-breadcrumbs-item href="/?path=/story/breadcrumbs--regular">Regular</simplr-breadcrumbs-item>
     </simplr-breadcrumbs>
 `;
 
