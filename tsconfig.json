@@ -8,9 +8,6 @@
       "path": "./src/components/breadcrumbs"
     },
     {
-      "path": "./src/components/combobox"
-    },
-    {
       "path": "./src/components/icon"
     },
     {
@@ -60,6 +57,9 @@
     },
     {
       "path": "./src/components/button"
+    },
+    {
+      "path": "./src/components/combobox"
     },
     {
       "path": "./src/components/notification"
