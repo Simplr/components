@@ -41,6 +41,13 @@ const Menu: Story<ArgTypes> = ({ elevated, interactable, anchor }: ArgTypes) => 
         <simplr-menu-item>Your repositories</simplr-menu-item>
         <simplr-menu-item divider></simplr-menu-item>
         <simplr-menu-item>
+            <span style="display: flex; flex-direction: column">
+                <label>Main title</label>
+                <label style="font-size: 0.8rem; opacity: 0.6;">subtitle here</label>
+            </span>
+        </simplr-menu-item>
+        <simplr-menu-item divider></simplr-menu-item>
+        <simplr-menu-item>
             Settings
             <simplr-icon slot="icon-after" icon="wrench" size="1.2rem"></simplr-icon>
         </simplr-menu-item>
@@ -53,19 +60,29 @@ const Menu: Story<ArgTypes> = ({ elevated, interactable, anchor }: ArgTypes) => 
 
     return html`
         <style>
-simplr-button {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-}
+            simplr-button {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
         </style>
-        ${interactable ? html`<simplr-button id="menu-button" @click=${toggleMenu} elevated>Toggle</simplr-button>` : ''}
+        ${interactable
+            ? html`<simplr-button id="menu-button" @click=${toggleMenu} elevated>Toggle</simplr-button>`
+            : ''}
         ${anchor
             ? html`
-                  <simplr-menu ?elevated=${elevated} ?visible=${!interactable} dir="down" anchor-to="#menu-button" anchor-side="bottom-left"> ${menuItems} </simplr-menu>
+                  <simplr-menu
+                      ?elevated=${elevated}
+                      ?visible=${!interactable}
+                      dir="down"
+                      anchor-to="#menu-button"
+                      anchor-side="left-bottom"
+                  >
+                      ${menuItems}
+                  </simplr-menu>
               `
             : html`
                   <simplr-menu ?elevated=${elevated} ?visible=${!interactable} dir="down"> ${menuItems} </simplr-menu>
