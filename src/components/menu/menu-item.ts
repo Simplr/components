@@ -22,10 +22,13 @@ export class SimplrMenuItem extends LitElement {
     }
 
     render() {
+        if (this.divider) return html``;
         return html`
-            <slot name="icon-before"></slot>
-            <slot></slot>
-            <slot name="icon-after"></slot>
+            <button>
+                <slot name="icon-before"></slot>
+                <slot></slot>
+                <slot name="icon-after"></slot>
+            </button>
         `;
     }
 

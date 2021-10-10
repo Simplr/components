@@ -164,9 +164,6 @@ export class SimplrMenu extends LitElement {
         this.items = slottedElements.filter(
             el => !el.hasAttribute('divider') && !el.hasAttribute('non-selectable'),
         ) as HTMLElement[];
-        for (const item of this.items) {
-            item.tabIndex = 0;
-        }
         this.queueResize();
         if (this.focuseditemIndex > -1) {
             this.focuseditemIndex = 0;
@@ -177,7 +174,11 @@ export class SimplrMenu extends LitElement {
     _handleMenuPosition() {
         if (this._isAnchored()) {
             const rootNode = this.getRootNode();
-            if (!(rootNode instanceof Element) && !(rootNode instanceof ShadowRoot)) {
+            if (
+                !(rootNode instanceof Element) &&
+                !(rootNode instanceof ShadowRoot) &&
+                !(rootNode instanceof Document)
+            ) {
                 return;
             }
             const anchorTarget = rootNode.querySelector(`${this.anchorTo}`);
