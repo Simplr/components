@@ -21,6 +21,12 @@ export class SimplrLoading extends LitElement {
     @property({ type: String, reflect: true })
     align: string = 'center;';
 
+    @property({ type: Boolean, attribute: 'no-blur' })
+    noBlur: boolean = false;
+
+    @property({ type: Boolean, attribute: 'no-icon' })
+    noIcon: boolean = false;
+
     public hide(): void {
         this.addEventListener('transitionend', () => {
             this.remove();
@@ -29,6 +35,9 @@ export class SimplrLoading extends LitElement {
     }
 
     render(): TemplateResult {
+        if (this.noIcon) {
+            return html`<div class="loader"></div>`;
+        }
         return html`<div class="loader">
             <svg id="gear-1" height="24" width="24" viewBox="0 0 24 24">
                 <path d=${gearPath} />
@@ -51,7 +60,8 @@ export class SimplrLoading extends LitElement {
                 width: 100%;
                 height: 100%;
                 z-index: 999;
-                background: rgba(243, 243, 243, 0.5);
+                background: rgba(255, 255, 255, 0.6);
+                cursor: wait;
                 opacity: 1;
                 --speed: 3s;
             }
@@ -61,8 +71,15 @@ export class SimplrLoading extends LitElement {
             }
             @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
                 :host {
-                    -webkit-backdrop-filter: blur(1px);
-                    backdrop-filter: blur(1px);
+                    background: transparent;
+                    -webkit-backdrop-filter: blur(2px);
+                    backdrop-filter: blur(2px);
+                }
+
+                :host([no-blur]) {
+                    background: rgba(255, 255, 255, 0.6);
+                    -webkit-backdrop-filter: none;
+                    backdrop-filter: none;
                 }
             }
             .loader {
@@ -80,7 +97,7 @@ export class SimplrLoading extends LitElement {
                 padding-left: 0.5rem;
             }
             :host([align='right']) {
-                justify-conteloadingnt: flex-end;
+                justify-content: flex-end;
             }
             :host([align='right']) .loader {
                 padding-right: 0.5rem;
@@ -89,8 +106,8 @@ export class SimplrLoading extends LitElement {
             svg {
                 height: 10%;
                 width: 10%;
-                min-height: 20px;
-                min-width: 20px;
+                min-height: 16px;
+                min-width: 16px;
             }
             @keyframes gear1 {
                 from {
@@ -116,7 +133,7 @@ export class SimplrLoading extends LitElement {
             #gear-2 {
                 transform: translate(-10%, 25%);
                 animation: gear2 var(--speed) infinite linear;
-                fill: var(--secondary-color);
+                fill: var(--primary-color);
             }
         `;
     }
