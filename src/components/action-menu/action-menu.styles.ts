@@ -25,6 +25,12 @@ export const actionMenuStyles = [
             margin-bottom: 0.25rem;
         }
 
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
         :host(:hover) {
             fill: var(--primary-color);
             color: var(--primary-color);

@@ -23,5 +23,5 @@ export function isEsc(e: KeyboardEvent) {
 }
 
 export function isSpace(e: KeyboardEvent) {
-    return e.code === ' ';
+    return e.code === 'Space';
 }
