@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { inputStyles } from './input.styles';
 import '@simplr-wc/components-core/loading';
 
@@ -41,8 +41,14 @@ export class SimplrInput extends LitElement {
     @property({ type: Boolean, reflect: true })
     invalid: boolean = false;
 
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
+
     @property({ type: String, reflect: true })
     value: string | undefined;
+
+    @state()
+    loadingElement: HTMLElement | undefined;
 
     firstUpdated() {
         this.createElements();
@@ -67,10 +73,13 @@ export class SimplrInput extends LitElement {
     private setElementAttributes(_changedProperties: any) {
         if (this.labelElem && _changedProperties.has('label')) {
             this.labelElem.innerText = this.label || '';
+            this.labelElem.htmlFor = `${this.name}-input`;
+            this.labelElem.slot = 'label-slot';
         }
         if (this.inputElem) {
+            this.inputElem.id = `${this.name}-input`;
             this.inputElem.type = this.type;
-            this.inputElem.disabled = this.disabled;
+            this.inputElem.disabled = this.disabled || this.loading;
             this.inputElem.name = this.name;
             this.inputElem.autocomplete = 'off';
             this.inputElem.placeholder = this.placeholder;
@@ -78,6 +87,15 @@ export class SimplrInput extends LitElement {
             if (this.step) {
                 this.inputElem.step = this.step;
             }
+        }
+        if (this.loading && !this.loadingElement) {
+            this.loadingElement = document.createElement('simplr-loading');
+            this.loadingElement.setAttribute('align', 'right');
+            this.appendChild(this.loadingElement);
+        }
+        if (!this.loading && this.loadingElement) {
+            this.loadingElement.remove();
+            this.loadingElement = undefined;
         }
     }
 
@@ -112,7 +130,8 @@ export class SimplrInput extends LitElement {
     }
 
     render() {
-        return html`<slot></slot>${this.renderSubtitle()}`;
+        return html` <slot name="label-slot"></slot>
+            <slot></slot>${this.renderSubtitle()}`;
     }
 
     renderSubtitle() {

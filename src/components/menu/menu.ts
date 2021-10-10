@@ -21,6 +21,12 @@ export class SimplrMenu extends LitElement {
     @property({ type: String, attribute: 'anchor-side' })
     anchorSide: string | undefined;
 
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
+
+    @property({ type: String, attribute: 'loading-message' })
+    loadingMessage: string = 'Loading...';
+
     @state()
     items: HTMLElement[] = [];
 
@@ -255,7 +261,16 @@ export class SimplrMenu extends LitElement {
     }
 
     render() {
-        return html`<slot @slotchange=${this._mapSlottedItems}> </slot>`;
+        if (this.loading) {
+            return html`
+                <simplr-loading no-blur align="right"></simplr-loading>
+                <slot name="loading-slot"
+                    ><simplr-menu-item non-selectable>${this.loadingMessage}</simplr-menu-item></slot
+                >;
+            `;
+        }
+
+        return html`<slot @slotchange=${this._mapSlottedItems}></slot>`;
     }
 
     static get styles() {
