@@ -64,9 +64,22 @@ export const menuItemStyles = [
             font-size: 0.8rem;
         }
 
+        button {
+            display: flex;
+            cursor: pointer;
+
+            background: none;
+            border: none;
+            outline: none;
+            color: inherit;
+            fill: inherit;
+            text-align: left;
+        }
+
         :host(:hover),
         :host(:focus),
-        :host([selected]) {
+        :host([selected]),
+        :host(:focus-within) {
             outline: none;
             background: var(--primary-color);
             color: var(--alternative-text-color);

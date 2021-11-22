@@ -35,6 +35,7 @@ export const inputStyles = [
             box-sizing: border-box;
             font-size: var(--font-size);
             transition: var(--transition);
+            margin: 0 0 0.5rem 0;
         }
         ::slotted(input) {
             box-sizing: border-box;
@@ -47,7 +48,6 @@ export const inputStyles = [
             background: transparent;
             font-size: var(--font-size);
             padding: 0.4rem;
-            margin: 0.5rem 0 0 0;
             border-radius: 2px;
             transition: var(--transition);
         }
@@ -74,6 +74,11 @@ export const inputStyles = [
         .subtitle {
             font-size: var(--subtitle-font-size);
             opacity: 0.6;
+        }
+
+        slot {
+            display: block;
+            position: relative;
         }
     `,
 ];

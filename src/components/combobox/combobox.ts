@@ -5,6 +5,7 @@ import { SimplrInput } from '@simplr-wc/input';
 import { SimplrMenu, SimplrMenuItem } from '@simplr-wc/menu';
 import { fuzzyFind } from '@simplr-wc/components-core';
 import { comboboxStyles } from './combobox.styles';
+import '@simplr-wc/components-core/loading';
 
 export interface ComboBoxOption {
     value: any;
@@ -15,6 +16,9 @@ export interface ComboBoxOption {
     searchWords?: string[];
 }
 
+const FOCUS_TIMEOUT = 100;
+
+// TODO: Make form accessible
 @customElement('simplr-combobox')
 export class SimplrCombobox extends LitElement {
     @property({ type: String, reflect: true })
@@ -38,11 +42,20 @@ export class SimplrCombobox extends LitElement {
     @property({ type: Array })
     items: ComboBoxOption[] = [];
 
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
+
     @property({ type: Number, reflect: true })
     min: number = 3;
 
+    @property({ type: Boolean, reflect: true })
+    focused: boolean = false;
+
     @property({ type: String, attribute: 'no-items-found-message' })
     noItemsFoundMessage: string = 'No items found';
+
+    @property({ type: String, attribute: 'loading-message' })
+    loadingMessage: string = 'Loading';
 
     @state()
     searchText: string = '';
@@ -58,26 +71,30 @@ export class SimplrCombobox extends LitElement {
     }
 
     private onFocus() {
-        if (this.isVisible()) {
-            setTimeout(() => {
-                this.menu?.open();
-            }, 200);
-        }
+        setTimeout(() => {
+            this.focused = true;
+        }, FOCUS_TIMEOUT);
     }
 
     private onBlur() {
-        if (this.isVisible()) {
-            setTimeout(() => {
-                this.menu?.close();
-            }, 200);
-        }
+        setTimeout(() => {
+            this.focused = false;
+        }, FOCUS_TIMEOUT);
     }
 
     private onItemSelected(e: CustomEvent) {
         const selectedItem = e.detail.item as SimplrMenuItem;
         if (this.input) {
-            this.input.value = selectedItem.innerText;
-            this.searchText = selectedItem.innerText;
+            const item = this.items.find(i => i.label === selectedItem.innerText);
+            if (item) {
+                this.input.value = item.label;
+                this.searchText = item.label;
+                this.dispatchEvent(
+                    new CustomEvent('simplr-combobox-item-selected', {
+                        detail: { item },
+                    }),
+                );
+            }
         }
     }
 
@@ -102,7 +119,7 @@ export class SimplrCombobox extends LitElement {
     }
 
     private isVisible() {
-        return this.searchText.length >= this.min;
+        return this.focused && this.searchText.length >= this.min;
     }
 
     render() {
@@ -122,6 +139,7 @@ export class SimplrCombobox extends LitElement {
                 anchor-to="simplr-input"
                 anchor-side="bottom-center-x"
                 ?elevated=${this.elevated}
+                ?loading=${this.loading}
                 @simplr-menu-item-selected=${this.onItemSelected}
             >
                 ${this.getItems()}

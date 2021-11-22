@@ -21,6 +21,12 @@ export class SimplrMenu extends LitElement {
     @property({ type: String, attribute: 'anchor-side' })
     anchorSide: string | undefined;
 
+    @property({ type: Boolean, reflect: true })
+    loading: boolean = false;
+
+    @property({ type: String, attribute: 'loading-message' })
+    loadingMessage: string = 'Loading...';
+
     @state()
     items: HTMLElement[] = [];
 
@@ -158,9 +164,6 @@ export class SimplrMenu extends LitElement {
         this.items = slottedElements.filter(
             el => !el.hasAttribute('divider') && !el.hasAttribute('non-selectable'),
         ) as HTMLElement[];
-        for (const item of this.items) {
-            item.tabIndex = 0;
-        }
         this.queueResize();
         if (this.focuseditemIndex > -1) {
             this.focuseditemIndex = 0;
@@ -171,7 +174,11 @@ export class SimplrMenu extends LitElement {
     _handleMenuPosition() {
         if (this._isAnchored()) {
             const rootNode = this.getRootNode();
-            if (!(rootNode instanceof Element) && !(rootNode instanceof ShadowRoot)) {
+            if (
+                !(rootNode instanceof Element) &&
+                !(rootNode instanceof ShadowRoot) &&
+                !(rootNode instanceof Document)
+            ) {
                 return;
             }
             const anchorTarget = rootNode.querySelector(`${this.anchorTo}`);
@@ -255,7 +262,16 @@ export class SimplrMenu extends LitElement {
     }
 
     render() {
-        return html`<slot @slotchange=${this._mapSlottedItems}> </slot>`;
+        if (this.loading) {
+            return html`
+                <simplr-loading no-blur align="right"></simplr-loading>
+                <slot name="loading-slot"
+                    ><simplr-menu-item non-selectable>${this.loadingMessage}</simplr-menu-item></slot
+                >;
+            `;
+        }
+
+        return html`<slot @slotchange=${this._mapSlottedItems}></slot>`;
     }
 
     static get styles() {
