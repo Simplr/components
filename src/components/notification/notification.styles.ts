@@ -31,6 +31,7 @@ export const notificationStyles = [
             left: 0;
             right: 0;
             margin: 1rem auto 0;
+            transform: translate(0px, 0px);
         }
         @keyframes slide-in {
             from {
@@ -113,7 +114,9 @@ export const notificationStyles = [
         }
         .information-area {
             flex-basis: 80%;
-            padding: 4px 0 0;
+            padding: 4px 1.5rem 0 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .information-area h2 {
             font-size: 1.2rem;
@@ -122,6 +125,7 @@ export const notificationStyles = [
         .information-area p {
             font-size: 0.875rem;
             margin: 0 0 1.5rem;
+            word-break: break-all;
         }
         .timeout-bar {
             width: 0%;
