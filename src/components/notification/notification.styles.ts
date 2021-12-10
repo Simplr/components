@@ -30,12 +30,12 @@ export const notificationStyles = [
             top: 0;
             left: 0;
             right: 0;
-            margin: 1rem auto 0;
-            transform: translate(0px, 0px);
+            margin: 2rem auto 0;
+            transform: translate(0px, -10px);
         }
         @keyframes slide-in {
             from {
-                transform: translate(0, -100px);
+                transform: translate(0, -110px);
                 opacity: 0;
             }
         }
