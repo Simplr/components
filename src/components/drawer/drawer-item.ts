@@ -11,6 +11,9 @@ export class SimplrDrawerItem extends LitElement {
     @property({ type: String, reflect: true })
     href: string | undefined;
 
+    @property({ type: Boolean, reflect: true })
+    end: boolean = false;
+
     render() {
         if (this.href) {
             return html`<a class="item-focus" href="${this.href}"

@@ -16,6 +16,12 @@ export const drawerStyles = [
             color: #fff;
             fill: #fff;
             transition: 300ms ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        :host([elevated]) {
+            box-shadow: var(--elevated);
         }
 
         :host([side='left']) {
@@ -109,6 +115,11 @@ export const drawerItemStyles = [
         }
         :host([side='right']) .item-focus {
             flex-direction: row-reverse;
+        }
+
+        :host([end]) {
+            margin-top: auto;
+            margin-bottom: 0;
         }
     `,
 ];
