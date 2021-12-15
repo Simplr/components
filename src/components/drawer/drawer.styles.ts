@@ -6,7 +6,8 @@ export const drawerStyles = [
     css`
         :host {
             --drawer-width: 9999px;
-            --focus-stealer-background: rgba(18, 18, 18, 0.6);
+            --focus-stealer-background: var(--dim-dark);
+            --accent-color: var(--primary-color);
 
             position: fixed;
             top: 0;
@@ -68,24 +69,35 @@ export const drawerItemStyles = [
             display: flex;
             color: inherit;
             fill: inherit;
-            --hover-background: rgba(255, 255, 255, 0.2);
+            --hover-background: var(--dim-dark);
+            --hover-color: var(--accent-color);
+            --accent-color: inherit;
             transition: 100ms ease-in-out;
         }
 
+        :host * {
+            color: inherit;
+        }
+
         :host(:hover) {
-            background: var(--hover-background);
+            background: var(--hover-background) !important;
+            color: var(--hover-color) !important;
+        }
+
+        :host([selected]) {
+            border-left: 5px solid var(--accent-color);
+            color: var(--accent-color);
         }
 
         .item-focus {
             cursor: pointer;
             width: 100%;
-            background: none;
+            background: inherit;
             border: none;
-            color: #fff;
+            color: inherit;
             font-size: 1.3rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             padding: 1rem;
         }
 
