@@ -15,27 +15,38 @@ export const drawerStyles = [
             background-color: var(--background-color);
             color: #fff;
             fill: #fff;
+            will-change: left, right;
             transition: 300ms ease-in-out;
+            display: flex;
+            flex-direction: column;
+            transform: translate(0, 0);
+            will-change: transform;
+        }
+
+        :host([elevated]) {
+            box-shadow: var(--elevated);
         }
 
         :host([side='left']) {
-            left: calc(-1 * var(--drawer-width));
+            transform: translate(calc(-1 * var(--drawer-width)), 0);
+            left: 0;
+        }
+
+        :host([side='left'][drawer-open]) {
+            transform: translate(0, 0);
         }
 
         :host([drawer-open]) {
             z-index: 100;
         }
 
-        :host([side='left'][drawer-open]) {
-            left: 0;
-        }
-
         :host([side='right']) {
-            right: calc(-1 * var(--drawer-width));
+            right: 0;
+            transform: translate(calc(1 * var(--drawer-width)), 0);
         }
 
         :host([side='right'][drawer-open]) {
-            right: 0;
+            transform: translate(0, 0);
         }
 
         .focus-stealer {
@@ -109,6 +120,11 @@ export const drawerItemStyles = [
         }
         :host([side='right']) .item-focus {
             flex-direction: row-reverse;
+        }
+
+        :host([end]) {
+            margin-top: auto;
+            margin-bottom: 0;
         }
     `,
 ];

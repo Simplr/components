@@ -37,6 +37,20 @@ export const baseStyles = css`
 
         --border-color: rgb(238, 238, 238);
 
+        --elevated: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+
+        --fade-in: fade-in;
+
         box-sizing: border-box;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 `;
