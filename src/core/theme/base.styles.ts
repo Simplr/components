@@ -41,7 +41,6 @@ export const baseStyles = css`
             0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 
         --fade-in: fade-in;
-
         box-sizing: border-box;
     }
 
