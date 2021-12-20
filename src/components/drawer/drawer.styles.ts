@@ -101,6 +101,7 @@ export const drawerItemStyles = [
         }
 
         .item-focus {
+            text-decoration: none;
             cursor: pointer;
             width: 100%;
             background: inherit;
