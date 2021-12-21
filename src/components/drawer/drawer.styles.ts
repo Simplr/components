@@ -6,6 +6,7 @@ export const drawerStyles = [
     css`
         :host {
             --drawer-width: 9999px;
+            --view-size: 9999px;
             --focus-stealer-background: var(--dim-dark);
             --accent-color: var(--primary-color);
 
@@ -67,6 +68,39 @@ export const drawerStyles = [
             display: block;
             opacity: 1;
             pointer-events: all;
+            transform: translate(calc((var(--view-size) - var(--drawer-width)) * -1));
+        }
+
+        .close-menu-button {
+            background: none;
+            width: fit-content;
+            padding: 0;
+            border: none;
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transform: rotate(180deg);
+            transition: 200ms ease-in-out;
+        }
+
+        :host([drawer-open]) .close-menu-button {
+            right: 1rem;
+            transform: rotate(0deg);
+            color: var(--alternative-text-color);
+        }
+
+        :host([side='right']) .close-menu-button {
+            right: unset;
+            left: -2rem;
+            transform: rotate(0deg);
+        }
+
+        :host([side='right'][drawer-open]) .close-menu-button {
+            right: unset;
+            left: 1rem;
+            transform: rotate(180deg);
         }
     `,
 ];

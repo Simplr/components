@@ -25,6 +25,7 @@ const Drawer: Story<ArgTypes> = ({ side, stealFocus, drawerOpen }: ArgTypes) => 
     <style>
         simplr-drawer {
             color: #fff;
+            padding-top: 4rem;
         }
         img {
             width: 500px;
@@ -33,7 +34,6 @@ const Drawer: Story<ArgTypes> = ({ side, stealFocus, drawerOpen }: ArgTypes) => 
             text-align: center;
         }
     </style>
-    <simplr-button @click=${toggleDrawer} primary elevated>Toggle drawer</simplr-button>
     <simplr-drawer ?steal-focus=${stealFocus} side=${side} ?drawer-open=${drawerOpen}>
         ${stealFocus
         ? html`<img
