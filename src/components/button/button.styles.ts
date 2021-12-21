@@ -37,7 +37,6 @@ export const buttonStyles = [
             color: var(--alternative-text-color);
             background-color: var(--main-color);
             --ripple-color: var(--alternative-text-color);
-            font-weight: 700;
         }
         :host([outlined]) {
             border: 2px solid var(--main-color);
@@ -47,7 +46,6 @@ export const buttonStyles = [
             color: var(--alternative-text-color);
             --ripple-color: var(--alternative-text-color);
             background-color: var(--main-color);
-            font-weight: 700;
             box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
                 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
         }
@@ -92,7 +90,9 @@ export const buttonStyles = [
             padding: 0 0.25rem;
         }
 
+        a,
         button {
+            text-decoration: none;
             background: transparent;
             color: inherit;
             font-size: inherit;
@@ -103,6 +103,7 @@ export const buttonStyles = [
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 1px 6px;
         }
     `,
 ];

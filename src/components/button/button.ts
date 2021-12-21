@@ -48,6 +48,9 @@ export class SimplrButton extends LitElement {
     @property({ reflect: true })
     label: string = 'button';
 
+    @property({ reflect: true })
+    href: string | undefined;
+
     @query('button')
     buttonElem: HTMLButtonElement | undefined;
 
@@ -84,6 +87,12 @@ export class SimplrButton extends LitElement {
     }
 
     render(): TemplateResult {
+        if (this.href) {
+            return html`<a href="${this.href}">
+                ${this.loading ? html`<simplr-loading></simplr-loading>` : ''}
+                <slot></slot>
+            </a>`;
+        }
         return html`<button>
             ${this.loading ? html`<simplr-loading></simplr-loading>` : ''}
             <slot></slot>
