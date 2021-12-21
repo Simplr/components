@@ -28,16 +28,16 @@ export const inputStyles = [
         }
 
         :host([invalid]) ::slotted(input) {
-            box-shadow: 0px 1px 4px 1px var(--secondary-color);
+            box-shadow: 0px 1px 4px 0px var(--secondary-color);
         }
 
         ::slotted(label) {
             box-sizing: border-box;
             font-size: var(--font-size);
             transition: var(--transition);
-            margin: 0 0 0.5rem 0;
         }
         ::slotted(input) {
+            margin: 0.5rem 0 0 0;
             box-sizing: border-box;
             width: 100%;
             height: 100%;
@@ -48,12 +48,12 @@ export const inputStyles = [
             background: transparent;
             font-size: var(--font-size);
             padding: 0.4rem;
-            border-radius: 2px;
+            border-radius: 4px;
             transition: var(--transition);
         }
 
         :host(:focus-within) ::slotted(input) {
-            box-shadow: 0px 1px 4px 1px var(--primary-color);
+            box-shadow: 0px 1px 4px 0px var(--primary-color);
         }
         /* Focus events */
         :host(:focus-within)::after {
