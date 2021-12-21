@@ -1,7 +1,8 @@
 import { html, LitElement, TemplateResult } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 import { errorSign, infoSign, successSign, warningSign } from './notification.icons';
-import { notificationStyles } from './notification.styles';
+import { notificationStyles } from './notification.styles.js';
+import './notification-outlet.js';
 
 type NotificationRole = 'info' | 'error' | 'warning' | 'success';
 export type SimplrNotificationOptions = {
@@ -9,6 +10,7 @@ export type SimplrNotificationOptions = {
     title: string;
     message: string;
     role?: NotificationRole | string;
+    container?: Document | ShadowRoot;
 };
 
 /**
@@ -65,7 +67,17 @@ export class SimplrNotification extends LitElement {
         if (options.role) {
             notification.role = options.role;
         }
-        document.body.appendChild(notification);
+        const outlet = SimplrNotification.findOutlet(options.container);
+        outlet.appendChild(notification);
+    }
+
+    public static findOutlet(container: Document | ShadowRoot = document): Element {
+        let outlet = container.querySelector('simplr-notification-outlet');
+        if (!outlet) {
+            outlet = document.createElement('simplr-notification-outlet');
+            document.body.prepend(outlet);
+        }
+        return outlet;
     }
 
     firstUpdated() {
