@@ -6,7 +6,6 @@ export const comboboxStyles = [
     css`
         :host {
             display: flex;
-            position: relative;
         }
 
         simplr-input {
@@ -14,12 +13,16 @@ export const comboboxStyles = [
         }
 
         simplr-menu {
-            width: 100%;
-            --offset-y: -8px;
+            --offset-y: 6px;
         }
 
         simplr-menu[elevated] {
-            --offset-y: -6px;
+            --offset-y: 8px;
+        }
+
+        simplr-menu-item span {
+            display: flex;
+            flex-direction: column;
         }
     `,
 ];

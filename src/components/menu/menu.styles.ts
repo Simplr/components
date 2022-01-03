@@ -6,6 +6,7 @@ export const menuStyles = [
     css`
         :host {
             --background-color: --light-background-color;
+            --menu-width: auto;
 
             --offset-top: 0px;
             --offset-left: 0px;
@@ -13,7 +14,7 @@ export const menuStyles = [
             --offset-x: 0px;
             --offset-y: 0px;
 
-            position: absolute;
+            position: fixed;
             top: calc(var(--offset-top) + var(--offset-y));
             left: calc(var(--offset-left) + var(--offset-x));
 
@@ -27,6 +28,7 @@ export const menuStyles = [
             overflow-y: hidden;
             overflow-x: clip;
             transition: 200ms ease-in-out height;
+            z-index: 9001;
         }
 
         :host([dir='up']) {
@@ -42,6 +44,7 @@ export const menuStyles = [
         }
 
         :host([visible]) {
+            width: var(--menu-width);
             height: var(--menu-height);
             border: 2px solid var(--border-color);
         }

@@ -84,8 +84,9 @@ export class SimplrCombobox extends LitElement {
 
     private onItemSelected(e: CustomEvent) {
         const selectedItem = e.detail.item as SimplrMenuItem;
+        const selectedItemLabel = selectedItem.querySelector('.item-label') as HTMLElement;
         if (this.input) {
-            const item = this.items.find(i => i.label === selectedItem.innerText);
+            const item = this.items.find(i => i.label === selectedItemLabel.innerText);
             if (item) {
                 this.input.value = item.label;
                 this.searchText = item.label;
@@ -101,7 +102,17 @@ export class SimplrCombobox extends LitElement {
     private getItems() {
         const shownItems = this.items.filter(this.filterItems.bind(this));
         if (shownItems.length <= 0) return html`<simplr-menu-item non-selectable>No items found</simplr-menu-item>`;
-        return html`${repeat(shownItems, item => html`<simplr-menu-item>${item.label}</simplr-menu-item> `)}`;
+        return html`${repeat(
+            shownItems,
+            item => html`
+                <simplr-menu-item>
+                    <span>
+                        <label class="item-label">${item.label}</label>
+                        <label style="font-size: 0.8rem; opacity: 0.6;">${item.subtitle ?? ''}</label>
+                    </span>
+                </simplr-menu-item>
+            `,
+        )}`;
     }
 
     private filterItems(item: ComboBoxOption) {
@@ -109,7 +120,7 @@ export class SimplrCombobox extends LitElement {
 
         const searchWords = [...(item.searchWords ?? []), item.label, item.value, item.subtitle]
             .filter(it => it !== undefined)
-            .map(it => it.toLowerCase());
+            .map(it => it.toString().toLowerCase());
         const searchTerm = this.searchText.toLowerCase();
 
         if (this.fuzzy) {
@@ -141,6 +152,7 @@ export class SimplrCombobox extends LitElement {
                 ?elevated=${this.elevated}
                 ?loading=${this.loading}
                 @simplr-menu-item-selected=${this.onItemSelected}
+                contained
             >
                 ${this.getItems()}
             </simplr-menu>

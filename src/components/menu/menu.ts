@@ -10,6 +10,9 @@ export class SimplrMenu extends LitElement {
     elevated: boolean = false;
 
     @property({ type: Boolean, reflect: true })
+    contained: boolean = false;
+
+    @property({ type: Boolean, reflect: true })
     visible: boolean = false;
 
     @property({ type: String, reflect: true })
@@ -201,12 +204,15 @@ export class SimplrMenu extends LitElement {
                 yOffset = boundingRect.y + boundingRect.height;
             }
             if (this.anchorSide?.includes('center-x')) {
-                xOffset = 0;
+                xOffset = boundingRect.x;
             }
             if (this.anchorSide?.includes('center-y')) {
-                yOffset = 0;
+                yOffset = boundingRect.y;
             }
 
+            if (this.contained) {
+                this.style.setProperty('--menu-width', `${boundingRect.width}px`);
+            }
             this.style.setProperty('--offset-top', `${yOffset}px`);
             this.style.setProperty('--offset-left', `${xOffset}px`);
         } else {
