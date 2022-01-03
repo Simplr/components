@@ -1,0 +1,18 @@
+{
+  "name": "@simplr-wc/date-picker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/date-picker.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "*",
+    "@simplr-wc/components-core": "*",
+    "@simplr-wc/input": "*",
+    "lit-flatpickr": "*"
+  }
+}
