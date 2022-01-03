@@ -7,6 +7,11 @@ export const datePickerStyles = [
         :host {
             font-weight: 500;
             --background-color: transparent;
+            cursor: auto;
+        }
+
+        ::slotted(*) {
+            cursor: auto;
         }
     `,
 ];
