@@ -13,6 +13,7 @@
     "lit": "*",
     "@simplr-wc/components-core": "*",
     "@simplr-wc/input": "*",
-    "@simplr-wc/menu": "*"
+    "@simplr-wc/menu": "*",
+    "@simplr-wc/icon": "*"
   }
 }

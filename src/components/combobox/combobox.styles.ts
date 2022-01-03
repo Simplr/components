@@ -6,6 +6,7 @@ export const comboboxStyles = [
     css`
         :host {
             display: flex;
+            position: relative;
         }
 
         simplr-input {
@@ -23,6 +24,17 @@ export const comboboxStyles = [
         simplr-menu-item span {
             display: flex;
             flex-direction: column;
+        }
+
+        button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+            margin: 0;
+            border: none;
         }
     `,
 ];

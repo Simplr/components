@@ -3,6 +3,9 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { SimplrInput } from '@simplr-wc/input';
 import { SimplrMenu, SimplrMenuItem } from '@simplr-wc/menu';
+// prettier-ignore
+import "@simplr-wc/menu";
+import '@simplr-wc/icon';
 import { fuzzyFind } from '@simplr-wc/components-core';
 import { comboboxStyles } from './combobox.styles';
 import '@simplr-wc/components-core/loading';
@@ -57,6 +60,9 @@ export class SimplrCombobox extends LitElement {
     @property({ type: String, attribute: 'loading-message' })
     loadingMessage: string = 'Loading';
 
+    @property({ type: Boolean, reflect: true })
+    clearable: boolean = false;
+
     @state()
     searchText: string = '';
 
@@ -85,6 +91,7 @@ export class SimplrCombobox extends LitElement {
     private onItemSelected(e: CustomEvent) {
         const selectedItem = e.detail.item as SimplrMenuItem;
         const selectedItemLabel = selectedItem.querySelector('.item-label') as HTMLElement;
+        console.log(e);
         if (this.input) {
             const item = this.items.find(i => i.label === selectedItemLabel.innerText);
             if (item) {
@@ -133,6 +140,13 @@ export class SimplrCombobox extends LitElement {
         return this.focused && this.searchText.length >= this.min;
     }
 
+    public clear() {
+        if (this.input) {
+            this.input.value = '';
+        }
+        this.searchText = '';
+    }
+
     render() {
         return html`
             <simplr-input
@@ -156,6 +170,9 @@ export class SimplrCombobox extends LitElement {
             >
                 ${this.getItems()}
             </simplr-menu>
+            ${this.clearable
+                ? html`<button @click=${this.clear}><simplr-icon icon="x" size="1.6rem"></simplr-icon></button>`
+                : ''}
         `;
     }
 

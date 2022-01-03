@@ -67,6 +67,7 @@
                 { "varsIgnorePattern": "_" }
             ],
             "import/no-unresolved": "off",
+            "import/no-duplicates": "off",
             "import/extensions": [
                 "error",
                 "always",
