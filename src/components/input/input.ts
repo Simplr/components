@@ -6,7 +6,7 @@ import '@simplr-wc/components-core/loading';
 @customElement('simplr-input')
 export class SimplrInput extends LitElement {
     @property({ type: Object })
-    private inputElem: HTMLInputElement | undefined;
+    private inputElem: HTMLInputElement | HTMLTextAreaElement | undefined;
 
     @property({ type: Object })
     private labelElem: HTMLLabelElement | undefined;
@@ -47,6 +47,13 @@ export class SimplrInput extends LitElement {
     @property({ type: String, reflect: true })
     value: string | undefined;
 
+    // textarea props
+    @property({ type: Number, reflect: true })
+    cols: number | undefined;
+
+    @property({ type: Number, reflect: true })
+    rows: number | undefined;
+
     @state()
     loadingElement: HTMLElement | undefined;
 
@@ -66,7 +73,11 @@ export class SimplrInput extends LitElement {
         this.labelElem = document.createElement('label');
         this.appendChild(this.labelElem);
 
-        this.inputElem = document.createElement('input');
+        if (this.type === 'textarea') {
+            this.inputElem = document.createElement('textarea');
+        } else {
+            this.inputElem = document.createElement('input');
+        }
         this.appendChild(this.inputElem);
     }
 
@@ -78,14 +89,20 @@ export class SimplrInput extends LitElement {
         }
         if (this.inputElem) {
             this.inputElem.id = `${this.name}-input`;
-            this.inputElem.type = this.type;
             this.inputElem.disabled = this.disabled || this.loading;
             this.inputElem.name = this.name;
             this.inputElem.autocomplete = 'off';
             this.inputElem.placeholder = this.placeholder;
             this.inputElem.value = this.value ?? '';
-            if (this.step) {
-                this.inputElem.step = this.step;
+            if (this.inputElem instanceof HTMLInputElement) {
+                this.inputElem.type = this.type;
+                if (this.step) {
+                    this.inputElem.step = this.step;
+                }
+            }
+            if (this.inputElem instanceof HTMLTextAreaElement) {
+                this.inputElem.cols = this.cols || 40;
+                this.inputElem.rows = this.rows || 4;
             }
         }
         if (this.loading && !this.loadingElement) {

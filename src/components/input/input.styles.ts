@@ -27,7 +27,8 @@ export const inputStyles = [
             --text-color: var(--secondary-color);
         }
 
-        :host([invalid]) ::slotted(input) {
+        :host([invalid]) ::slotted(input),
+        :host([invalid]) ::slotted(textarea) {
             box-shadow: 0px 1px 4px 0px var(--secondary-color);
         }
 
@@ -36,7 +37,10 @@ export const inputStyles = [
             font-size: var(--font-size);
             transition: var(--transition);
         }
-        ::slotted(input) {
+
+        ::slotted(input),
+        ::slotted(textarea) {
+            font-family: inherit;
             margin: 0.5rem 0 0 0;
             box-sizing: border-box;
             width: 100%;
@@ -52,7 +56,8 @@ export const inputStyles = [
             transition: var(--transition);
         }
 
-        :host(:focus-within) ::slotted(input) {
+        :host(:focus-within) ::slotted(input),
+        :host(:focus-within) ::slotted(textarea) {
             box-shadow: 0px 1px 4px 0px var(--primary-color);
         }
         /* Focus events */
@@ -67,7 +72,8 @@ export const inputStyles = [
         }
         /* Disabled */
         :host([disabled]) ::slotted(label),
-        ::slotted(input[disabled]) {
+        ::slotted(input[disabled]),
+        ::slotted(textarea[disabled]) {
             opacity: 0.7;
         }
 
