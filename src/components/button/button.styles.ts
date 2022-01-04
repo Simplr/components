@@ -90,6 +90,16 @@ export const buttonStyles = [
             padding: 0 0.25rem;
         }
 
+        ::slotted(button) {
+            padding: 0;
+            width: 0;
+            height: 0;
+            appearance: none;
+            font-size: 0;
+            border: 0;
+            margin: 0;
+        }
+
         a,
         button {
             text-decoration: none;

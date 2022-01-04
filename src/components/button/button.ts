@@ -54,13 +54,16 @@ export class SimplrButton extends LitElement {
     @query('button')
     buttonElem: HTMLButtonElement | undefined;
 
+    lightDomButton: HTMLButtonElement | undefined;
+
     firstUpdated() {
+        this.createLightDomButton();
         this.addEventListeners();
     }
 
     private addEventListeners() {
-        this.buttonElem?.addEventListener('keyup', this.handleKeyboardEvent.bind(this));
-        this.buttonElem?.addEventListener('click', this.onClick.bind(this), true);
+        this.addEventListener('keyup', this.handleKeyboardEvent.bind(this));
+        this.addEventListener('click', this.onClick.bind(this), true);
     }
 
     private onClick(e: MouseEvent) {
@@ -81,8 +84,16 @@ export class SimplrButton extends LitElement {
         }
     }
 
+    private createLightDomButton() {
+        const button = document.createElement('button');
+        button.type = this.type;
+        button.tabIndex = -1;
+        this.appendChild(button);
+        this.lightDomButton = button;
+    }
+
     public doClick() {
-        this.buttonElem?.click();
+        this.lightDomButton?.click();
         this.focus();
     }
 
