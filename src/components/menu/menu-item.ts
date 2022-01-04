@@ -14,6 +14,7 @@ export class SimplrMenuItem extends LitElement {
     nonSelectable: boolean = false;
 
     firstUpdated() {
+        this.tabIndex = -1;
         this.addEventListener('click', this.launchSelectEvent.bind(this));
     }
 
