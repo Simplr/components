@@ -23,7 +23,7 @@ export const menuStyles = [
             border-radius: 4px;
             background: var(--bright-background-color);
             border: 0 solid var(--border-color);
-            width: fit-content;
+            width: var(--menu-width);
             height: 0px;
             overflow-y: hidden;
             overflow-x: clip;
