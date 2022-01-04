@@ -63,6 +63,9 @@ export class SimplrCombobox extends LitElement {
     @property({ type: Boolean, reflect: true })
     clearable: boolean = false;
 
+    @property({ type: Object })
+    selectedItem: ComboBoxOption | undefined;
+
     @state()
     searchText: string = '';
 
@@ -71,6 +74,27 @@ export class SimplrCombobox extends LitElement {
 
     @query('simplr-input')
     input: SimplrInput | undefined;
+
+    firstUpdated() {
+        this.checkForAssociatedForm();
+    }
+
+    checkForAssociatedForm() {
+        console.log(this);
+        let maybeForm = this.parentElement;
+        while (maybeForm && maybeForm.nodeName !== 'FORM') {
+            maybeForm = maybeForm.parentElement;
+        }
+        if (maybeForm) {
+            // Is inside a form
+            console.log(maybeForm);
+            maybeForm.addEventListener('formdata', e => {
+                const { formData } = e;
+                // TODO: Can this be something else than a stringified json?
+                formData.append(this.name, JSON.stringify(this.getValue()));
+            });
+        }
+    }
 
     private onInput(e: InputEvent) {
         this.searchText = (e.target as HTMLInputElement).value;
@@ -93,7 +117,9 @@ export class SimplrCombobox extends LitElement {
         const selectedItemLabel = selectedItem.querySelector('.item-label') as HTMLElement;
         console.log(e);
         if (this.input) {
+            // TODO: Maybe make this more reliable
             const item = this.items.find(i => i.label === selectedItemLabel.innerText);
+            this.selectedItem = item;
             if (item) {
                 this.input.value = item.label;
                 this.searchText = item.label;
@@ -140,11 +166,16 @@ export class SimplrCombobox extends LitElement {
         return this.focused && this.searchText.length >= this.min;
     }
 
+    public getValue() {
+        return this.selectedItem;
+    }
+
     public clear() {
         if (this.input) {
             this.input.value = '';
         }
         this.searchText = '';
+        this.selectedItem = undefined;
     }
 
     render() {
