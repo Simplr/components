@@ -14,6 +14,8 @@ export const comboboxStyles = [
         }
 
         simplr-menu {
+            max-height: var(--list-max-height, auto);
+            overflow-y: auto;
             --offset-y: 6px;
         }
 

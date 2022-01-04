@@ -150,6 +150,7 @@ export class SimplrMenu extends LitElement {
     private setSelectedOnFocusedItem() {
         this.removeSelectedStatuses();
         this.items[this.focuseditemIndex].setAttribute('selected', '');
+        this.items[this.focuseditemIndex].scrollIntoView({ block: 'nearest' });
     }
 
     private selectFocusedItem() {

@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { SimplrInput } from '@simplr-wc/input';
@@ -63,6 +63,9 @@ export class SimplrCombobox extends LitElement {
     @property({ type: Boolean, reflect: true })
     clearable: boolean = false;
 
+    @property({ type: Number, attribute: 'list-size' })
+    listSize: number = 5;
+
     @state()
     searchText: string = '';
 
@@ -71,6 +74,14 @@ export class SimplrCombobox extends LitElement {
 
     @query('simplr-input')
     input: SimplrInput | undefined;
+
+    updated(_changedProperties: PropertyValues) {
+        if (_changedProperties.has('items')) {
+            setTimeout(() => {
+                this.setListItemSize();
+            }, FOCUS_TIMEOUT);
+        }
+    }
 
     private onInput(e: InputEvent) {
         this.searchText = (e.target as HTMLInputElement).value;
@@ -88,10 +99,14 @@ export class SimplrCombobox extends LitElement {
         }, FOCUS_TIMEOUT);
     }
 
+    private setListItemSize() {
+        const item = this.shadowRoot?.querySelector('simplr-menu-item');
+        this.style.setProperty('--list-max-height', `${(item?.clientHeight || 0) * this.listSize}px`);
+    }
+
     private onItemSelected(e: CustomEvent) {
         const selectedItem = e.detail.item as SimplrMenuItem;
         const selectedItemLabel = selectedItem.querySelector('.item-label') as HTMLElement;
-        console.log(e);
         if (this.input) {
             const item = this.items.find(i => i.label === selectedItemLabel.innerText);
             if (item) {
