@@ -73,7 +73,7 @@ export class SimplrMenu extends LitElement {
         });
         this.resizeObserver.observe(this);
 
-        this.addEventListener('click', () => this.close());
+        this.addEventListener('simplr-menu-item-selected', () => this.close());
     }
 
     updated(_changeProperties: PropertyValues) {
