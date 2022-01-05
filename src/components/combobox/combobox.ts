@@ -11,7 +11,7 @@ import { comboboxStyles } from './combobox.styles';
 import '@simplr-wc/components-core/loading';
 
 export interface ComboBoxOption {
-    value: any;
+    value: number;
     label: string;
     subtitle?: string;
     preIcon?: string;
@@ -63,8 +63,8 @@ export class SimplrCombobox extends LitElement {
     @property({ type: Boolean, reflect: true })
     clearable: boolean = false;
 
-    @property({ type: Object })
-    selectedItem: ComboBoxOption | undefined;
+    @property({ type: Number })
+    selectedItem: number | undefined;
 
     @property({ type: Number, attribute: 'list-size' })
     listSize: number = 5;
@@ -90,11 +90,9 @@ export class SimplrCombobox extends LitElement {
         }
         if (maybeForm) {
             // Is inside a form
-            console.log(maybeForm);
             maybeForm.addEventListener('formdata', e => {
                 const { formData } = e;
-                // TODO: Can this be something else than a stringified json?
-                formData.append(this.name, JSON.stringify(this.getValue()));
+                formData.append(this.name, this.getValue()?.toString() ?? '');
             });
         }
     }
@@ -130,21 +128,23 @@ export class SimplrCombobox extends LitElement {
 
     private onItemSelected(e: CustomEvent) {
         const selectedItem = e.detail.item as SimplrMenuItem;
-        const selectedItemLabel = selectedItem.querySelector('.item-label') as HTMLElement;
-        if (this.input) {
-            // TODO: Maybe make this more reliable
-            const item = this.items.find(i => i.label === selectedItemLabel.innerText);
-            this.selectedItem = item;
-            if (item) {
-                this.input.value = item.label;
-                this.searchText = item.label;
-                this.dispatchEvent(
-                    new CustomEvent('simplr-combobox-item-selected', {
-                        detail: { item },
-                    }),
-                );
-            }
+        if (!this.input || !selectedItem) {
+            return;
         }
+        const value = Number(selectedItem.dataset.value);
+        const item = this.items.find(i => i.value === value);
+        if (!item) {
+            return;
+        }
+
+        this.selectedItem = item.value;
+        this.input.value = item.label;
+        this.searchText = item.label;
+        this.dispatchEvent(
+            new CustomEvent('simplr-combobox-item-selected', {
+                detail: { item },
+            }),
+        );
     }
 
     private getItems() {
@@ -153,7 +153,7 @@ export class SimplrCombobox extends LitElement {
         return html`${repeat(
             shownItems,
             item => html`
-                <simplr-menu-item>
+                <simplr-menu-item data-value="${item.value}">
                     <span>
                         <label class="item-label">${item.label}</label>
                         <label style="font-size: 0.8rem; opacity: 0.6;">${item.subtitle ?? ''}</label>
@@ -168,13 +168,13 @@ export class SimplrCombobox extends LitElement {
 
         const searchWords = [...(item.searchWords ?? []), item.label, item.value, item.subtitle]
             .filter(it => it !== undefined)
-            .map(it => it.toString().toLowerCase());
+            .map(it => it?.toString().toLowerCase() ?? '');
         const searchTerm = this.searchText.toLowerCase();
 
         if (this.fuzzy) {
             return searchWords.some(sw => fuzzyFind(searchTerm, sw));
         }
-        return searchWords.some(sw => sw.includes(searchTerm));
+        return searchWords.some(sw => sw?.includes(searchTerm));
     }
 
     private isVisible() {
@@ -183,6 +183,10 @@ export class SimplrCombobox extends LitElement {
 
     public getValue() {
         return this.selectedItem;
+    }
+
+    public getSelectedItem() {
+        return this.items.find(item => item.value === this.selectedItem);
     }
 
     public clear() {
