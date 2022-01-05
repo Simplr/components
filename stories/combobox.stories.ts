@@ -16,12 +16,12 @@ export interface ArgTypes {
 const Combobox: Story<ArgTypes> = ({ fuzzy }: ArgTypes) => {
 
     const items: ComboBoxOption[] = [
-        { value: "item-1", label: "Meal for 2 Quesadilla" },
-        { value: "item-2", label: "Meal for 2 Crunchwrap" },
-        { value: "item-3", label: "Box for 1" },
-        { value: "item-4", label: "Crunchwrap Supereme meal" },
-        { value: "item-5", label: "Grilled Stuft Burrito Meal" },
-        { value: "item-6", label: "2 Tacos supreme meal" }
+        { value: 1, label: "Meal for 2 Quesadilla" },
+        { value: 2, label: "Meal for 2 Crunchwrap" },
+        { value: 3, label: "Box for 1" },
+        { value: 4, label: "Crunchwrap Supereme meal" },
+        { value: 5, label: "Grilled Stuft Burrito Meal" },
+        { value: 6, label: "2 Tacos supreme meal" }
     ];
     return html`
     <style>
@@ -46,12 +46,12 @@ const Combobox: Story<ArgTypes> = ({ fuzzy }: ArgTypes) => {
 const ComboboxWithLoading: Story<ArgTypes> = ({ }: ArgTypes) => {
 
     const items: ComboBoxOption[] = [
-        { value: "item-1", label: "Meal for 2 Quesadilla" },
-        { value: "item-2", label: "Meal for 2 Crunchwrap" },
-        { value: "item-3", label: "Box for 1" },
-        { value: "item-4", label: "Crunchwrap Supereme meal" },
-        { value: "item-5", label: "Grilled Stuft Burrito Meal" },
-        { value: "item-6", label: "2 Tacos supreme meal" }
+        { value: 1, label: "Meal for 2 Quesadilla" },
+        { value: 2, label: "Meal for 2 Crunchwrap" },
+        { value: 3, label: "Box for 1" },
+        { value: 4, label: "Crunchwrap Supereme meal" },
+        { value: 5, label: "Grilled Stuft Burrito Meal" },
+        { value: 6, label: "2 Tacos supreme meal" }
     ];
 
     function loadItems(e: InputEvent) {
