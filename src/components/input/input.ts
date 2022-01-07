@@ -84,6 +84,9 @@ export class SimplrInput extends LitElement {
     private setElementAttributes(_changedProperties: any) {
         if (this.labelElem && _changedProperties.has('label')) {
             this.labelElem.innerText = this.label || '';
+            if (this.required) {
+                this.labelElem.innerText = `${this.labelElem.innerText} *`;
+            }
             this.labelElem.htmlFor = `${this.name}-input`;
             this.labelElem.slot = 'label-slot';
         }
@@ -133,17 +136,18 @@ export class SimplrInput extends LitElement {
         }
     }
 
-    validate(): void {
+    checkValidity(): boolean {
         const value = this.inputElem?.value || '';
         if (this.required && value.length <= 0) {
             this.invalid = true;
-            return;
+        } else {
+            this.invalid = !this.inputElem?.checkValidity() || false;
         }
-        this.invalid = !this.inputElem?.checkValidity() || false;
+        return !this.invalid;
     }
 
     private handleBlur() {
-        this.validate();
+        this.checkValidity();
     }
 
     render() {

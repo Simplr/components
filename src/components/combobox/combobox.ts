@@ -6,7 +6,7 @@ import { SimplrMenu, SimplrMenuItem } from '@simplr-wc/menu';
 // prettier-ignore
 import "@simplr-wc/menu";
 import '@simplr-wc/icon';
-import { fuzzyFind } from '@simplr-wc/components-core';
+import { fuzzyFind, getFrame } from '@simplr-wc/components-core';
 import { comboboxStyles } from './combobox.styles';
 import '@simplr-wc/components-core/loading';
 
@@ -69,6 +69,9 @@ export class SimplrCombobox extends LitElement {
     @property({ type: Number, attribute: 'list-size' })
     listSize: number = 5;
 
+    @property({ type: Boolean, reflect: true })
+    required: boolean = false;
+
     @state()
     searchText: string = '';
 
@@ -92,7 +95,7 @@ export class SimplrCombobox extends LitElement {
             // Is inside a form
             maybeForm.addEventListener('formdata', e => {
                 const { formData } = e;
-                formData.append(this.name, this.getValue()?.toString() ?? '');
+                formData.append(this.name, this.value.toString());
             });
         }
     }
@@ -145,6 +148,9 @@ export class SimplrCombobox extends LitElement {
                 detail: { item },
             }),
         );
+        getFrame().then(() => {
+            this.checkValidity();
+        });
     }
 
     private getItems() {
@@ -181,8 +187,12 @@ export class SimplrCombobox extends LitElement {
         return this.focused && this.searchText.length >= this.min;
     }
 
-    public getValue() {
-        return this.selectedItem;
+    public checkValidity() {
+        return this.input?.checkValidity();
+    }
+
+    public get value() {
+        return this.selectedItem ?? '';
     }
 
     public getSelectedItem() {
@@ -208,6 +218,7 @@ export class SimplrCombobox extends LitElement {
                 name="${this.name}"
                 placeholder="${this.placeholder}"
                 ?elevated=${this.elevated}
+                ?required=${this.required}
             ></simplr-input>
             <simplr-menu
                 ?visible=${this.isVisible()}

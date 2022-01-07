@@ -8,6 +8,7 @@ export const datePickerStyles = [
             font-weight: 500;
             --background-color: transparent;
             cursor: auto;
+            overflow: visible;
         }
 
         ::slotted(*) {
