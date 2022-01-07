@@ -86,7 +86,6 @@ export class SimplrCombobox extends LitElement {
     }
 
     checkForAssociatedForm() {
-        console.log(this);
         let maybeForm = this.parentElement;
         while (maybeForm && maybeForm.nodeName !== 'FORM') {
             maybeForm = maybeForm.parentElement;
