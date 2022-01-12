@@ -22,13 +22,29 @@ export const listItemStyles = [
             --header-color: #595959;
             --hover-background: rgba(0, 0, 0, 0.04);
 
-            color: var(--text-color);
-            padding: 0.6rem 1rem;
             border: 1px solid #d6d1e0;
+            padding: 1rem;
+        }
+
+        :host([href]) {
+            padding: 0;
+        }
+
+        :host,
+        a {
+            color: var(--text-color);
             transition: 100ms ease-in-out;
             display: flex;
             justify-content: space-between;
         }
+
+        a {
+            padding: 1rem;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+        }
+
         :host(:hover) {
             background: var(--hover-background);
         }
