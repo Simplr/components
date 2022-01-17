@@ -1,3 +1,3 @@
-# Archived
+# Simplr Components
 
-See https://github.com/Simplr/components
+A set of opinionated Web Components, used for Simplr applications
