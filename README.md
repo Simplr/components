@@ -1,4 +1,3 @@
-# Simplr Components
+# Archived
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
-
+See https://github.com/Simplr/components
