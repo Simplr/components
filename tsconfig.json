@@ -8,6 +8,9 @@
       "path": "./src/components/date-picker"
     },
     {
+      "path": "./src/components/combobox"
+    },
+    {
       "path": "./src/components/breadcrumbs"
     },
     {
@@ -60,9 +63,6 @@
     },
     {
       "path": "./src/components/button"
-    },
-    {
-      "path": "./src/components/combobox"
     },
     {
       "path": "./src/components/notification"
