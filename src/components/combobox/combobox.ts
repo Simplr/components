@@ -1,7 +1,8 @@
 import { html, LitElement, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
-import type { SimplrInput } from '@simplr-wc/input';
+// @ts-ignore
+import { SimplrInput } from '@simplr-wc/input';
 import { SimplrMenu, SimplrMenuItem } from '@simplr-wc/menu';
 // prettier-ignore
 import '@simplr-wc/menu';
