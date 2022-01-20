@@ -20,6 +20,9 @@
       "path": "./src/components/action-menu"
     },
     {
+      "path": "./src/components/input"
+    },
+    {
       "path": "./src/components/menu"
     },
     {
@@ -36,9 +39,6 @@
     },
     {
       "path": "./src/components/tabs"
-    },
-    {
-      "path": "./src/components/input"
     },
     {
       "path": "./src/components/file-input"
