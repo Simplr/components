@@ -1,12 +1,14 @@
 import { html, LitElement, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
-import { SimplrInput } from '@simplr-wc/input';
 import { SimplrMenu, SimplrMenuItem } from '@simplr-wc/menu';
 // prettier-ignore
-import "@simplr-wc/menu";
+import '@simplr-wc/menu';
+// prettier-ignore
+import '@simplr-wc/input';
 import '@simplr-wc/icon';
 import { fuzzyFind, getFrame } from '@simplr-wc/components-core';
+import { SimplrInput } from '@simplr-wc/input';
 import { comboboxStyles } from './combobox.styles';
 import '@simplr-wc/components-core/loading';
 

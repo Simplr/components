@@ -1,4 +1,3 @@
 # Simplr Components
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
-
+A set of opinionated Web Components, used for Simplr applications

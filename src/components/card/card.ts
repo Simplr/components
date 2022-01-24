@@ -11,7 +11,17 @@ export class SimplrCard extends LitElement {
     @property({ type: String, reflect: true })
     subtitle: string | undefined;
 
+    @property({ type: String, reflect: true })
+    href: string | undefined;
+
     render() {
+        if (this.href) {
+            return this.renderLinkCard();
+        }
+        return this.renderRegularCard();
+    }
+
+    renderRegularCard() {
         return html`
             <slot name="media"></slot>
             <div class="content">
@@ -21,6 +31,10 @@ export class SimplrCard extends LitElement {
             </div>
             <slot name="actions"></slot>
         `;
+    }
+
+    renderLinkCard() {
+        return html` <a href="${this.href}"> ${this.renderRegularCard()} </a> `;
     }
 
     static get styles() {

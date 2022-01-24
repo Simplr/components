@@ -5,7 +5,13 @@
   "files": [],
   "references": [
     {
+      "path": "./src/components/input"
+    },
+    {
       "path": "./src/components/date-picker"
+    },
+    {
+      "path": "./src/components/combobox"
     },
     {
       "path": "./src/components/breadcrumbs"
@@ -35,9 +41,6 @@
       "path": "./src/components/tabs"
     },
     {
-      "path": "./src/components/input"
-    },
-    {
       "path": "./src/components/file-input"
     },
     {
@@ -60,9 +63,6 @@
     },
     {
       "path": "./src/components/button"
-    },
-    {
-      "path": "./src/components/combobox"
     },
     {
       "path": "./src/components/notification"

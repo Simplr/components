@@ -8,9 +8,20 @@ export class SimplrListItem extends LitElement {
     @property({ type: Boolean, reflect: true })
     header: boolean = false;
 
+    @property({ type: String, reflect: true })
+    href: string | undefined;
+
     render() {
+        if (this.href) {
+            return html`
+                <a href="${this.href}">
+                    <slot></slot>
+                    <slot name="right"></slot>
+                </a>
+            `;
+        }
         return html`
-            <slot> </slot>
+            <slot></slot>
             <slot name="right"></slot>
         `;
     }

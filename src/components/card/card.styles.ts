@@ -16,6 +16,16 @@ export const cardStyles = [
             flex-direction: column;
             background: #fff;
         }
+        a {
+            width: 100%;
+            height: 100%;
+            display: inherit;
+            flex-direction: inherit;
+            align-items: inherit;
+            justify-content: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
         .content {
             padding: 1rem;
         }
