@@ -14,7 +14,7 @@ export const dialogStyles = [
             min-height: 100px;
             height: min-content;
             opacity: 0;
-            transition: 200ms ease-in-out;
+            transition: 100ms ease-in-out;
             position: fixed;
             top: 0;
             left: 0;
@@ -50,6 +50,7 @@ export const dialogStyles = [
             pointer-events: auto;
             opacity: 0.7;
             z-index: 100;
+            background: #000;
         }
         .close-button {
             position: absolute;
