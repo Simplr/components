@@ -147,7 +147,9 @@ export class SimplrInput extends LitElement {
     }
 
     private handleBlur() {
-        this.checkValidity();
+        setTimeout(() => {
+            this.checkValidity();
+        }, 100);
     }
 
     render() {

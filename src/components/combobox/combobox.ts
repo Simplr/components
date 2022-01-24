@@ -21,7 +21,6 @@ export interface ComboBoxOption {
 
 const FOCUS_TIMEOUT = 100;
 
-// TODO: Make form accessible
 @customElement('simplr-combobox')
 export class SimplrCombobox extends LitElement {
     @property({ type: String, reflect: true })
@@ -62,6 +61,12 @@ export class SimplrCombobox extends LitElement {
 
     @property({ type: Boolean, reflect: true })
     clearable: boolean = false;
+
+    @property({ type: Boolean, attribute: 'clear-on-click' })
+    clearOnClick: boolean = false;
+
+    @property({ type: Boolean, attribute: 'disable-keyboard-input' })
+    disableKeyboardInput: boolean = false;
 
     @property({ type: Number })
     selectedItem: number | undefined;
@@ -111,7 +116,16 @@ export class SimplrCombobox extends LitElement {
         this.searchText = (e.target as HTMLInputElement).value;
     }
 
+    private onKeyDown(e: KeyboardEvent) {
+        if (this.disableKeyboardInput) {
+            e.preventDefault();
+        }
+    }
+
     private onFocus() {
+        if (this.clearOnClick) {
+            this.clear();
+        }
         setTimeout(() => {
             this.focused = true;
         }, FOCUS_TIMEOUT);
@@ -210,6 +224,7 @@ export class SimplrCombobox extends LitElement {
         return html`
             <simplr-input
                 @input=${this.onInput}
+                @keydown=${this.onKeyDown}
                 @focusin=${this.onFocus}
                 @focusout=${this.onBlur}
                 type="text"
