@@ -88,6 +88,9 @@ export class SimplrCombobox extends LitElement {
     @query('simplr-input')
     input: SimplrInput | undefined;
 
+    @property({ type: Boolean, reflect: true })
+    disabled: boolean = false;
+
     firstUpdated() {
         this.checkForAssociatedForm();
     }
@@ -223,6 +226,7 @@ export class SimplrCombobox extends LitElement {
     }
 
     render() {
+        console.log(this.getSelectedItem()?.label);
         return html`
             <simplr-input
                 @input=${this.onInput}
@@ -233,8 +237,10 @@ export class SimplrCombobox extends LitElement {
                 label="${this.label}"
                 name="${this.name}"
                 placeholder="${this.placeholder}"
+                value=${this.getSelectedItem()?.label}
                 ?elevated=${this.elevated}
                 ?required=${this.required}
+                ?disabled=${this.disabled}
             ></simplr-input>
             <simplr-menu
                 ?visible=${this.isVisible()}
@@ -247,7 +253,7 @@ export class SimplrCombobox extends LitElement {
             >
                 ${this.getItems()}
             </simplr-menu>
-            ${this.clearable
+            ${this.clearable && !this.disabled
                 ? html`<button @click=${this.clear}><simplr-icon icon="x" size="1.6rem"></simplr-icon></button>`
                 : ''}
         `;
