@@ -1,11 +1,10 @@
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { SimplrBreadcrumbsItem } from './breadcrumbs-item';
-import { breadcrumbsStyles } from './breadcrumbs.styles';
+import { SimplrBreadcrumbsItem } from './breadcrumbs-item.js';
+import { breadcrumbsStyles } from './breadcrumbs.styles.js';
 
 @customElement('simplr-breadcrumbs')
 export class SimplrBreadcrumbs extends LitElement {
-
     render() {
         return html`<slot @slotchange="${this.handleItems}"></slot>`;
     }
@@ -15,12 +14,11 @@ export class SimplrBreadcrumbs extends LitElement {
         const items = slot.assignedElements();
 
         items.forEach((item, i) => {
-
             const breadcrumbItem = item as SimplrBreadcrumbsItem;
 
-            if (i === 0) breadcrumbItem.first = true;
-            if (i !== 0) breadcrumbItem.chevron = true;
-            if (i === items.length - 1) breadcrumbItem.last = true;
+            breadcrumbItem.first = i === 0;
+            breadcrumbItem.chevron = i !== 0;
+            breadcrumbItem.last = i === items.length - 1;
         });
     }
 

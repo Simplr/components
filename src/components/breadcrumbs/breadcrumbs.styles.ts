@@ -39,6 +39,7 @@ export const breadcrumbsItemStyles = [
         label {
             flex-basis: 100%;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .chevron {
