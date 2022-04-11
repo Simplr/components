@@ -226,7 +226,6 @@ export class SimplrCombobox extends LitElement {
     }
 
     render() {
-        console.log(this.getSelectedItem()?.label);
         return html`
             <simplr-input
                 @input=${this.onInput}
