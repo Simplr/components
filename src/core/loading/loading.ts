@@ -64,7 +64,21 @@ export class SimplrLoading extends LitElement {
                 cursor: wait;
                 opacity: 1;
                 --speed: 3s;
+                animation: prevent-popin 50ms linear;
             }
+
+            @keyframes prevent-popin {
+                0% {
+                    opacity: 0;
+                }
+                99% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
             :host([hiding]) {
                 opacity: 0;
                 transition: 1s ease-in-out;
