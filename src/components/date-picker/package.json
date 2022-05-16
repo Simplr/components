@@ -13,6 +13,6 @@
     "lit": "*",
     "@simplr-wc/components-core": "*",
     "@simplr-wc/input": "*",
-    "lit-flatpickr": "^0.3.1"
+    "lit-flatpickr": "^0.4.0"
   }
 }
