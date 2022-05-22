@@ -74,7 +74,12 @@ export const buttonStyles = [
             pointer-events: none;
         }
         :host([rounded]) {
-            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(var(--size) * 2);
+            height: calc(var(--size) * 2);
+            padding: 0.2rem;
             border-radius: 50%;
         }
         :host([rounded])::after {
@@ -88,6 +93,10 @@ export const buttonStyles = [
 
         ::slotted(*) {
             padding: 0 0.25rem;
+        }
+
+        :host([rounded]) ::slotted(*) {
+            padding: 0;
         }
 
         ::slotted(button) {

@@ -24,7 +24,11 @@ export const inputStyles = [
         }
 
         :host([hidden]) {
-            display: none;
+            visibility: hidden;
+            height: 0px;
+            width: 0px;
+            margin: 0;
+            padding: 0;
         }
 
         :host([invalid]) {
