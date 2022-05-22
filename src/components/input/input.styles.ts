@@ -23,10 +23,13 @@ export const inputStyles = [
             border-radius: 2px;
         }
 
-        :host([hidden]) {
+        :host([hidden]),
+        :host([hidden]) ::slotted(*) {
             visibility: hidden;
             height: 0px;
             width: 0px;
+            font-size: 0;
+            line-height: 0;
             margin: 0;
             padding: 0;
         }
