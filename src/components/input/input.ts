@@ -54,6 +54,9 @@ export class SimplrInput extends LitElement {
     @property({ type: Number, reflect: true })
     rows: number | undefined;
 
+    @property({ type: Boolean, reflect: true })
+    hidden: boolean = false;
+
     @state()
     loadingElement: HTMLElement | undefined;
 

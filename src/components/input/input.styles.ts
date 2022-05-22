@@ -22,6 +22,11 @@ export const inputStyles = [
             background: var(--background-color);
             border-radius: 2px;
         }
+
+        :host([hidden]) {
+            display: none;
+        }
+
         :host([invalid]) {
             --highlight-color: var(--secondary-color);
             --text-color: var(--secondary-color);
