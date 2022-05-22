@@ -8,7 +8,6 @@ export const cardStyles = [
             min-width: 260px;
             width: fit-content;
             width: -moz-fit-content;
-            max-width: 330px;
             border-radius: 4px;
             box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
                 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
