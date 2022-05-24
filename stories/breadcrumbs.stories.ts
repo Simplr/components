@@ -9,9 +9,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Breadcrumbs: Story<ArgTypes> = ({ }: ArgTypes) => html`
+const Breadcrumbs: Story<ArgTypes> = ({}: ArgTypes) => html`
     <simplr-breadcrumbs>
         <simplr-breadcrumbs-item href="/?path=/story"> Home </simplr-breadcrumbs-item>
         <simplr-breadcrumbs-item href="/?path=/story/breadcrumbs"> Breadcrumbs </simplr-breadcrumbs-item>

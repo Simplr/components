@@ -35,20 +35,23 @@ const List: Story<ArgTypes> = ({ withStyling }: ArgTypes) => {
             opacity: 0.6;
         }
     `;
-    const extraStyle = !withStyling ? '' : css`
-    simplr-list-item:hover {
-        transform: scale(1.01);
-        background: #c9ebff;
-    }
-
-    `
+    const extraStyle = !withStyling
+        ? ''
+        : css`
+              simplr-list-item:hover {
+                  transform: scale(1.01);
+                  background: #c9ebff;
+              }
+          `;
     return html`
-        <style>${styles}${extraStyle}</style>
+        <style>
+            ${styles}${extraStyle}
+        </style>
 
         <simplr-list>
             <simplr-list-item header>Employees</simplr-list-item>
             ${employees.map(
-        emp => html`
+                emp => html`
                     <simplr-list-item>
                         <span class="name-and-title">
                             <label>${emp.name}</label>
@@ -59,7 +62,7 @@ const List: Story<ArgTypes> = ({ withStyling }: ArgTypes) => {
                         <simplr-button secondary small rounded slot="right">X</simplr-button>
                     </simplr-list-item>
                 `,
-    )}
+            )}
         </simplr-list>
     `;
 };
@@ -68,5 +71,5 @@ export const Regular = List.bind({});
 
 export const WithStyling = List.bind({});
 WithStyling.args = {
-    withStyling: true
-}
+    withStyling: true,
+};

@@ -8,9 +8,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Status: Story<ArgTypes> = ({ }: ArgTypes) => {
+const Status: Story<ArgTypes> = ({}: ArgTypes) => {
     return html`
         <style>
             div {

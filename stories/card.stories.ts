@@ -9,32 +9,27 @@ export default {
 };
 
 export interface ArgTypes {
-    label: string,
-    subtitle: string,
-    slot: TemplateResult,
-    imageslot: TemplateResult
+    label: string;
+    subtitle: string;
+    slot: TemplateResult;
+    imageslot: TemplateResult;
 }
 
 const Card: Story<ArgTypes> = ({ label, subtitle, slot, imageslot }: ArgTypes) => html`
-    <simplr-card
-        .label=${label}
-        .subtitle=${subtitle}
-            >
-            ${imageslot}
-
-            ${slot}</simplr-card> `;
+    <simplr-card .label=${label} .subtitle=${subtitle}> ${imageslot} ${slot}</simplr-card>
+`;
 
 export const Regular = Card.bind({});
 Regular.args = {
-    label: "Card label",
-    subtitle: "Card subtitle",
-    slot: html`<p>This is my body</p>`
-}
+    label: 'Card label',
+    subtitle: 'Card subtitle',
+    slot: html`<p>This is my body</p>`,
+};
 
 export const WithImage = Card.bind({});
 WithImage.args = {
-    label: "Card label",
-    subtitle: "Card subtitle",
+    label: 'Card label',
+    subtitle: 'Card subtitle',
     slot: html`<p>This is my body</p>`,
-    imageslot: html`<img src="https://picsum.photos/300/200" slot="media" />`
-}
+    imageslot: html`<img src="https://picsum.photos/300/200" slot="media" />`,
+};

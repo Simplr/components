@@ -8,9 +8,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Radio: Story<ArgTypes> = ({ }: ArgTypes) => html`
+const Radio: Story<ArgTypes> = ({}: ArgTypes) => html`
     <style>
         simplr-radio {
             margin-top: 1rem;

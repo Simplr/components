@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import '@simplr-wc/file-input';
 import { Story } from './story-types.js';
-import { SimplrFileInput } from "@simplr-wc/file-input";
+import { SimplrFileInput } from '@simplr-wc/file-input';
 
 export default {
     title: 'Fileinput',
@@ -9,9 +9,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Fileinput: Story<ArgTypes> = ({ }: ArgTypes) => {
+const Fileinput: Story<ArgTypes> = ({}: ArgTypes) => {
     function handleSubmit(e: Event) {
         e.preventDefault();
         const fileInput = document.querySelector('simplr-file-input') as SimplrFileInput;

@@ -8,9 +8,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Tag: Story<ArgTypes> = ({ }: ArgTypes) => html`
+const Tag: Story<ArgTypes> = ({}: ArgTypes) => html`
     <style>
         div {
             display: flex;

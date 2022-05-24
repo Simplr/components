@@ -8,11 +8,12 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const DatePicker: Story<ArgTypes> = ({ }: ArgTypes) => html`
-<simplr-date-picker>
-    <simplr-input label="Date" type="text" placeholder="Insert date" />
-</simplr-date-picker> `;
+const DatePicker: Story<ArgTypes> = ({}: ArgTypes) => html`
+    <simplr-date-picker>
+        <simplr-input label="Date" type="text" placeholder="Insert date" />
+    </simplr-date-picker>
+`;
 
 export const Regular = DatePicker.bind({});

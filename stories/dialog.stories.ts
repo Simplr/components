@@ -10,9 +10,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Dialog: Story<ArgTypes> = ({ }: ArgTypes) => {
+const Dialog: Story<ArgTypes> = ({}: ArgTypes) => {
     const openDialog = () => {
         const dialog = document.createElement('simplr-dialog') as SimplrDialog;
         dialog.innerHTML = `

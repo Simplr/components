@@ -6,12 +6,12 @@ export default {
     title: 'Action-menu',
     component: 'simplr-action-menu',
     argTypes: {
-        vertical: Boolean
+        vertical: Boolean,
     },
 };
 
 export interface ArgTypes {
-    vertical: boolean
+    vertical: boolean;
 }
 
 const ActionMenu: Story<ArgTypes> = ({ vertical }: ArgTypes) => html`
@@ -37,5 +37,5 @@ export const Regular = ActionMenu.bind({});
 
 export const Vertical = ActionMenu.bind({});
 Vertical.args = {
-    vertical: true
-}
+    vertical: true,
+};

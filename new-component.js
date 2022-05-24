@@ -1,5 +1,5 @@
 const fs = require("fs");
-const ncp = require("ncp").ncp;
+const {ncp} = require("ncp");
 
 const args = process.argv;
 const newComponentName = args.pop();
@@ -11,12 +11,12 @@ if (newComponentName.includes("/") || newComponentName.includes("\\")) {
 
 const newComponentNameLower = newComponentName.toLowerCase();
 const newComponentNameUpper = newComponentName.substring(0, 1).toUpperCase() + newComponentName.substring(1);
-console.log("Creating component " + newComponentName);
+console.log(`Creating component ${  newComponentName}`);
 
 const COMPONENTS_DIR = "./src/components";
-const TEMPLATE_DIR = COMPONENTS_DIR + "/template";
+const TEMPLATE_DIR = `${COMPONENTS_DIR  }/template`;
 
-const targetDir = COMPONENTS_DIR + "/" + newComponentName;
+const targetDir = `${COMPONENTS_DIR  }/${  newComponentName}`;
 
 function createFiles() {
     ncp(TEMPLATE_DIR, targetDir, err => {
@@ -27,15 +27,15 @@ function createFiles() {
 
         fs.readdir(targetDir, (err, files) => {
             files.forEach(file => {
-                let fileContent = fs.readFileSync(targetDir + "/" + file, "utf8");
+                let fileContent = fs.readFileSync(`${targetDir  }/${  file}`, "utf8");
                 fileContent = fileContent.replace(/Template/g, newComponentNameUpper);
                 fileContent = fileContent.replace(/template/g, newComponentNameLower);
                 const newFileName = file.replace(/template/g, newComponentNameLower);
-                fs.writeFileSync(targetDir + "/" + newFileName, fileContent, 'utf8', err => {
+                fs.writeFileSync(`${targetDir  }/${  newFileName}`, fileContent, 'utf8', err => {
                     console.error(`Error writing file ${file}`, err);
                 });
                 if (file.includes("template")) {
-                    fs.rmSync(targetDir + "/" + file);
+                    fs.rmSync(`${targetDir  }/${  file}`);
                 }
             });
         });

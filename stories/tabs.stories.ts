@@ -9,9 +9,9 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Tab: Story<ArgTypes> = ({ }: ArgTypes) => html`
+const Tab: Story<ArgTypes> = ({}: ArgTypes) => html`
     <simplr-tabs selected="1">
         <simplr-tab value="1">One</simplr-tab>
         <simplr-tab value="2">
@@ -34,9 +34,7 @@ const Tab: Story<ArgTypes> = ({ }: ArgTypes) => html`
                 <p>You can add any kind of html into your tabs</p>
             </div>
         </simplr-tab-panel>
-        <simplr-tab-panel value="4">
-            GLHF
-        </simplr-tab-panel>
+        <simplr-tab-panel value="4"> GLHF </simplr-tab-panel>
     </simplr-tabs>
 `;
 

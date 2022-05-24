@@ -8,10 +8,10 @@ export default {
     argTypes: {},
 };
 
-export interface ArgTypes { }
+export interface ArgTypes {}
 
-const Icon: Story<ArgTypes> = ({ }: ArgTypes) => html` 
-    <simplr-icon icon="github"></simplr-icon> 
+const Icon: Story<ArgTypes> = ({}: ArgTypes) => html`
+    <simplr-icon icon="github"></simplr-icon>
     <simplr-icon icon="github" size="2rem"></simplr-icon>
     <simplr-icon icon="stop-circle" size="2rem" color="red"></simplr-icon>
     <simplr-icon icon="foobar" size="2rem" color="red"></simplr-icon>

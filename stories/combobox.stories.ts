@@ -10,48 +10,46 @@ export default {
 };
 
 export interface ArgTypes {
-    fuzzy: Boolean
+    fuzzy: Boolean;
 }
 
 const Combobox: Story<ArgTypes> = ({ fuzzy }: ArgTypes) => {
-
     const items: ComboBoxOption[] = [
-        { value: 1, label: "Meal for 2 Quesadilla" },
-        { value: 2, label: "Meal for 2 Crunchwrap" },
-        { value: 3, label: "Box for 1" },
-        { value: 4, label: "Crunchwrap Supereme meal" },
-        { value: 5, label: "Grilled Stuft Burrito Meal" },
-        { value: 6, label: "2 Tacos supreme meal" }
+        { value: 1, label: 'Meal for 2 Quesadilla' },
+        { value: 2, label: 'Meal for 2 Crunchwrap' },
+        { value: 3, label: 'Box for 1' },
+        { value: 4, label: 'Crunchwrap Supereme meal' },
+        { value: 5, label: 'Grilled Stuft Burrito Meal' },
+        { value: 6, label: '2 Tacos supreme meal' },
     ];
     return html`
-    <style>
-        simplr-combobox {
-            width: 500px;
-            --font-size: 18px;
-            margin-bottom: 1rem;
-        }
-    </style>
-    <simplr-combobox
-        label="Pick an item from the menu"
-        name="menu-item-pick"
-        placeholder="Try typing 'meal'"
-        .items=${items}
-        ?fuzzy=${fuzzy}
-        min=3
-    >
-    </simplr-combobox>
-`;
-}
+        <style>
+            simplr-combobox {
+                width: 500px;
+                --font-size: 18px;
+                margin-bottom: 1rem;
+            }
+        </style>
+        <simplr-combobox
+            label="Pick an item from the menu"
+            name="menu-item-pick"
+            placeholder="Try typing 'meal'"
+            .items=${items}
+            ?fuzzy=${fuzzy}
+            min="3"
+        >
+        </simplr-combobox>
+    `;
+};
 
-const ComboboxWithLoading: Story<ArgTypes> = ({ }: ArgTypes) => {
-
+const ComboboxWithLoading: Story<ArgTypes> = ({}: ArgTypes) => {
     const items: ComboBoxOption[] = [
-        { value: 1, label: "Meal for 2 Quesadilla" },
-        { value: 2, label: "Meal for 2 Crunchwrap" },
-        { value: 3, label: "Box for 1" },
-        { value: 4, label: "Crunchwrap Supereme meal" },
-        { value: 5, label: "Grilled Stuft Burrito Meal" },
-        { value: 6, label: "2 Tacos supreme meal" }
+        { value: 1, label: 'Meal for 2 Quesadilla' },
+        { value: 2, label: 'Meal for 2 Crunchwrap' },
+        { value: 3, label: 'Box for 1' },
+        { value: 4, label: 'Crunchwrap Supereme meal' },
+        { value: 5, label: 'Grilled Stuft Burrito Meal' },
+        { value: 6, label: '2 Tacos supreme meal' },
     ];
 
     function loadItems(e: InputEvent) {
@@ -61,35 +59,34 @@ const ComboboxWithLoading: Story<ArgTypes> = ({ }: ArgTypes) => {
             setTimeout(() => {
                 combobox.items = items;
                 combobox.loading = false;
-            }, 2000)
+            }, 2000);
         }
     }
 
     return html`
-    <style>
-        simplr-combobox {
-            width: 500px;
-            --font-size: 18px;
-            margin-bottom: 1rem;
-        }
-    </style>
-    <simplr-combobox
-        label="Pick an item from the menu"
-        name="menu-item-pick"
-        placeholder="Try typing 'meal'"
-        min=3
-        @input=${loadItems}
-    >
-    </simplr-combobox>
-`;
-}
+        <style>
+            simplr-combobox {
+                width: 500px;
+                --font-size: 18px;
+                margin-bottom: 1rem;
+            }
+        </style>
+        <simplr-combobox
+            label="Pick an item from the menu"
+            name="menu-item-pick"
+            placeholder="Try typing 'meal'"
+            min="3"
+            @input=${loadItems}
+        >
+        </simplr-combobox>
+    `;
+};
 
 export const Regular = Combobox.bind({});
 
 export const FuzzyFind = Combobox.bind({});
 FuzzyFind.args = {
-    fuzzy: true
-}
+    fuzzy: true,
+};
 
 export const WithLoading = ComboboxWithLoading.bind({});
-
