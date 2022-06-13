@@ -9,16 +9,17 @@ export async function getIconSvg(iconName: string): Promise<TemplateResult> {
 
     let iconResult;
     if (iconCache.has(iconUrl)) {
-        iconResult = await iconCache.get(iconUrl);
+        iconResult = iconCache.get(iconUrl);
     } else {
-        iconResult = await fetch(iconUrl).then(res => res.text());
+        iconResult = fetch(iconUrl).then(res => res.text());
         iconCache.set(iconUrl, iconResult);
     }
 
-    if (!iconResult.includes('<svg')) {
+    const iconData = await iconResult;
+    if (!iconData.includes('<svg')) {
         console.warn(`Icon ${iconName} not found!`);
         return html``;
     }
 
-    return html`${unsafeHTML(iconResult)}`;
+    return html`${unsafeHTML(iconData)}`;
 }
