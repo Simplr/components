@@ -26,6 +26,12 @@ export const checkboxStyles = [
         :host([success]) {
             --main-color: var(--success-color);
         }
+        :host([disabled]),
+        ::slotted(label),
+        ::slotted(input[disabled]) {
+            pointer-events: none;
+            opacity: 0.7;
+        }
         ::slotted(input) {
             width: 0;
             height: 0;
